@@ -2545,9 +2545,6 @@ body.dark-mode #events .event-card {
   padding: 3px;
 }
 
-
-    /* CampusOne NGC Advanced Modules */
-    .toolbar .form-input{min-width:220px;flex:1}.directory-avatar{width:34px;height:34px;border-radius:50%;object-fit:cover}.status-pill{display:inline-flex;padding:4px 9px;border-radius:20px;font-size:11px;font-weight:800;background:#fef3c7;color:#92400e}.status-pill.active{background:#dcfce7;color:#166534}.community-item,.message-item{padding:13px;border:1px solid var(--border);border-radius:12px;margin-bottom:10px;background:#fafbff}.community-item strong,.message-item strong{display:block;margin-bottom:3px}.community-item small,.message-item small{color:var(--muted)}
 </style>
 </head>
 
@@ -2990,15 +2987,6 @@ body.dark-mode #events .event-card {
         <button class="nav-item" data-page="gallery" onclick="showPage('gallery', this)">
           <span class="nav-icon">🖼️</span>
           <span>Gallery</span>
-        </button>
-        <button class="nav-item" data-page="directory" onclick="showPage('directory', this);loadUserDirectory()">
-          <span class="nav-icon">👥</span><span>User Directory</span>
-        </button>
-        <button class="nav-item" data-page="community" onclick="showPage('community', this);loadCommunityHub()">
-          <span class="nav-icon">🏫</span><span>Community</span>
-        </button>
-        <button class="nav-item" data-page="messages" onclick="showPage('messages', this);loadMessages()">
-          <span class="nav-icon">💬</span><span>Messages</span>
         </button>
 
 <div class="nav-title">Account</div>
@@ -3692,23 +3680,6 @@ body.dark-mode #events .event-card {
         <!-- =========================
              ADMIN
         ========================= -->
-
-        <section id="page-directory" class="page">
-          <div class="section-header"><div class="section-heading"><h2>👥 User Directory</h2><p>Search students, teachers, staff, guardians and alumni.</p></div></div>
-          <div class="card"><div class="card-body">
-            <div class="toolbar"><input id="directorySearch" class="form-input" placeholder="নাম, ID, বিভাগ বা বর্ষ দিয়ে খুঁজুন" oninput="filterDirectory()"><select id="directoryType" class="form-select" onchange="filterDirectory()"><option value="">সব Account Type</option><option>student</option><option>teacher</option><option>staff</option><option>guardian</option><option>alumni</option></select></div>
-            <div class="table-card" style="margin-top:15px"><table><thead><tr><th>Name / ID</th><th>Type</th><th>Academic Year</th><th>Department / Group</th><th>Status</th></tr></thead><tbody id="directoryTable"><tr><td colspan="5">Loading...</td></tr></tbody></table></div>
-          </div></div>
-        </section>
-        <section id="page-community" class="page">
-          <div class="section-header"><div class="section-heading"><h2>🏫 College Community</h2><p>Clubs, Rover Scout, achievements and alumni.</p></div></div>
-          <div class="grid-2"><div class="card"><div class="card-header"><div class="card-title">Clubs & Organizations</div><button class="small-btn" onclick="openCommunityModal('clubs')">+ Add</button></div><div class="card-body" id="clubsList">Loading...</div></div>
-          <div class="card"><div class="card-header"><div class="card-title">Achievements</div><button class="small-btn" onclick="openCommunityModal('achievements')">+ Add</button></div><div class="card-body" id="achievementsList">Loading...</div></div></div>
-        </section>
-        <section id="page-messages" class="page">
-          <div class="section-header"><div class="section-heading"><h2>💬 Internal Communication</h2><p>Send and receive portal messages.</p></div><button class="primary-btn" onclick="openMessageModal()">New Message</button></div>
-          <div class="card"><div class="card-body" id="messagesList">Loading...</div></div>
-        </section>
 
         <section id="page-admin" class="page">
 
@@ -8407,56 +8378,7 @@ try {
 
     setInterval(() => { if(currentUser) updateActivityAndViews(); if(currentUser && isAdmin()) loadAdminStats(); }, 5*60*1000);
 
-  
-    /* =========================
-       ADVANCED USER / COMMUNITY MODULES
-    ========================= */
-    let directoryCache = [];
-    async function loadUserDirectory(){
-      const table=document.getElementById("directoryTable"); if(!table)return;
-      table.innerHTML='<tr><td colspan="5">Loading...</td></tr>';
-      try{
-        const snap=await getDocs(collection(db,"users"));
-        directoryCache=snap.docs.map(d=>({id:d.id,...d.data()}));
-        renderDirectory(directoryCache);
-      }catch(e){console.error(e);table.innerHTML='<tr><td colspan="5">User directory load হয়নি। Firestore rules check করুন।</td></tr>';}
-    }
-    function renderDirectory(rows){
-      const table=document.getElementById("directoryTable"); if(!table)return;
-      if(!rows.length){table.innerHTML='<tr><td colspan="5">কোনো user পাওয়া যায়নি।</td></tr>';return;}
-      table.innerHTML=rows.map(u=>`<tr><td><strong>${escapeHtml(u.name||"Unnamed")}</strong><br><small>${escapeHtml(u.userId||u.id||"")}</small></td><td>${escapeHtml(u.accountType||"—")}</td><td>${escapeHtml(u.academicYear||"—")}</td><td>${escapeHtml(u.department||u.group||"—")}</td><td><span class="status-pill ${u.approved===true?"active":""}">${u.approved===true?"Approved":"Pending"}</span></td></tr>`).join("");
-    }
-    window.filterDirectory=function(){
-      const term=(document.getElementById("directorySearch")?.value||"").toLowerCase();
-      const type=document.getElementById("directoryType")?.value||"";
-      renderDirectory(directoryCache.filter(u=>(!type||u.accountType===type)&&["name","userId","academicYear","department","group","email"].some(k=>String(u[k]||"").toLowerCase().includes(term))));
-    };
-    async function loadCommunityHub(){
-      for(const [col,id] of [["clubs","clubsList"],["achievements","achievementsList"]]){
-        const box=document.getElementById(id);if(!box)continue;
-        try{const snap=await getDocs(collection(db,col));const rows=snap.docs.map(d=>d.data());box.innerHTML=rows.length?rows.map(x=>`<div class="community-item"><strong>${escapeHtml(x.title||x.name||"Untitled")}</strong><small>${escapeHtml(x.description||x.details||"")}</small></div>`).join(""):'<div class="empty">এখনো কোনো তথ্য নেই।</div>';}catch(e){box.textContent="Load error";}
-      }
-    }
-    window.openCommunityModal=function(type){
-      if(!canManage(type))return showToast("এই section manage করার permission নেই।","error");
-      openModal(type==="clubs"?"Add Club / Organization":"Add Achievement",`<div class="form-group"><label class="form-label">Title</label><input id="communityTitle" class="form-input"></div><div class="form-group"><label class="form-label">Description</label><textarea id="communityDesc" class="form-textarea"></textarea></div>`,async()=>{
-        const title=document.getElementById("communityTitle")?.value.trim();if(!title)return showToast("Title দিন","warning");
-        await addDoc(collection(db,type),{title,description:document.getElementById("communityDesc")?.value.trim()||"",createdAt:serverTimestamp(),createdBy:currentUser.uid});
-        closeModal();loadCommunityHub();showToast("সফলভাবে যোগ হয়েছে","success");
-      },"Save");
-    };
-    async function loadMessages(){
-      const box=document.getElementById("messagesList");if(!box||!currentUser)return;
-      try{const snap=await getDocs(query(collection(db,"messages"),where("toUid","==",currentUser.uid)));const rows=snap.docs.map(d=>d.data());box.innerHTML=rows.length?rows.map(x=>`<div class="message-item"><strong>${escapeHtml(x.subject||"Message")}</strong><small>${escapeHtml(x.body||"")}<br>${escapeHtml(x.fromEmail||"")}</small></div>`).join(""):'<div class="empty">কোনো message নেই।</div>';}catch(e){box.innerHTML='<div class="empty">Messages load করতে Firestore permission প্রয়োজন।</div>';}
-    }
-    window.openMessageModal=function(){
-      openModal("New Message",`<div class="form-group"><label class="form-label">Recipient User ID</label><input id="messageTo" class="form-input"></div><div class="form-group"><label class="form-label">Subject</label><input id="messageSubject" class="form-input"></div><div class="form-group"><label class="form-label">Message</label><textarea id="messageBody" class="form-textarea"></textarea></div>`,async()=>{
-        const to=document.getElementById("messageTo")?.value.trim(),body=document.getElementById("messageBody")?.value.trim();if(!to||!body)return showToast("Recipient ও message দিন","warning");
-        await addDoc(collection(db,"messages"),{toUid:to,subject:document.getElementById("messageSubject")?.value.trim()||"Message",body,fromUid:currentUser.uid,fromEmail:currentUser.email||"",createdAt:serverTimestamp(),read:false});
-        closeModal();showToast("Message পাঠানো হয়েছে","success");
-      },"Send");
-    };
-</script>
+  </script>
 
 </body>
 </html>
