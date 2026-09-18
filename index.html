@@ -11,15 +11,18 @@
 
   <!-- Search Engine / SEO -->
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="image" content="https://campusonengc.github.io/Campusone.ngc/logo.png" />
   <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
   <meta name="description" content="CampusOne NGC — Student Portal for notices, events, study materials, class routine, results, teachers & staff, and student support." />
   <meta name="keywords" content="CampusOne NGC, CampusOne, NGC Student Portal, student portal, National Government College, college portal, notices, results, routine, study materials, events" />
   <link rel="canonical" href="https://campusonengc.github.io/Campusone.ngc/" />
 
   <!-- Favicon / Web Logo -->
-  <link rel="icon" type="image/png" sizes="48x48" href="logo.png" />
-  <link rel="shortcut icon" type="image/png" href="logo.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="logo.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="https://campusonengc.github.io/Campusone.ngc/logo.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="https://campusonengc.github.io/Campusone.ngc/logo.png" />
+  <link rel="icon" type="image/png" sizes="48x48" href="https://campusonengc.github.io/Campusone.ngc/logo.png" />
+  <link rel="shortcut icon" type="image/png" href="https://campusonengc.github.io/Campusone.ngc/logo.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="https://campusonengc.github.io/Campusone.ngc/logo.png" />
 
   <!-- Social sharing -->
   <meta property="og:type" content="website" />
@@ -632,16 +635,26 @@
 
     #registerForm {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      column-gap: 14px;
-      align-items: start;
+      grid-template-columns: minmax(0, 1fr);
+      column-gap: 0;
+      align-items: stretch;
+    }
+
+    /* Registration fields: every field uses the same full width as Phone Number */
+    #registerForm .form-group,
+    #registerForm .form-input,
+    #registerForm .form-select,
+    #registerForm .input-wrap {
+      width: 100%;
+      box-sizing: border-box;
     }
 
     #registerForm > h2,
     #registerForm > .auth-subtitle,
     #registerForm > #registerBtn,
     #registerForm > #registerMessage {
-      grid-column: 1 / -1;
+      grid-column: 1;
+      width: 100%;
     }
 
     #registerForm > h2 { margin-bottom: 7px; }
@@ -660,6 +673,32 @@
     #registerForm #registerBtn {
       margin-top: 4px;
     }
+
+    /* Registration page premium layout */
+    #registerForm {
+      background: linear-gradient(180deg, rgba(248,250,252,.72), rgba(255,255,255,.96));
+      border: 1px solid rgba(226,232,240,.85);
+      border-radius: 20px;
+      padding: 22px;
+      box-shadow: 0 14px 35px rgba(15,23,42,.045);
+    }
+    #registerForm h2 { font-size: 29px; letter-spacing: -.5px; }
+    #registerForm .auth-subtitle { color:#64748b; line-height:1.65; }
+    #registerForm .form-group { position:relative; }
+    #registerForm .form-label { font-weight:700; font-size:12px; margin-bottom:7px; display:block; }
+    #registerForm .form-input, #registerForm .form-select { min-height:50px; background:#fff; }
+    #registerForm .primary-btn { margin-top:7px; box-shadow:0 12px 25px rgba(79,70,229,.20); }
+    .google-register-divider { display:flex; align-items:center; gap:11px; margin:18px 0 12px; color:#94a3b8; font-size:11px; grid-column:1/-1; }
+    .google-register-divider span { height:1px; background:#e2e8f0; flex:1; }
+    .google-register-divider b { font-weight:700; color:#94a3b8; }
+    .google-register-btn { grid-column:1/-1; width:100%; min-height:50px; border-radius:13px !important; display:flex; align-items:center; justify-content:center; gap:9px; background:#fff; border:1px solid #dbe3ee !important; color:#1f2937 !important; font-weight:800 !important; box-shadow:0 7px 20px rgba(15,23,42,.055); transition:.2s; }
+    .google-register-btn:hover { transform:translateY(-1px); border-color:#c7d2fe !important; box-shadow:0 11px 26px rgba(15,23,42,.08); }
+    .google-g-icon { width:25px; height:25px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-weight:900; font-family:Arial,sans-serif; color:#4285f4; border:1px solid #e5e7eb; background:#fff; }
+    .google-reg-intro { display:flex; align-items:center; gap:12px; padding:12px 13px; margin-bottom:14px; border:1px solid #e2e8f0; border-radius:14px; background:#f8fafc; }
+    .google-reg-icon { width:38px; height:38px; border-radius:11px; display:flex; align-items:center; justify-content:center; background:#fff; border:1px solid #e2e8f0; font-weight:900; color:#4285f4; font-size:19px; }
+    .google-reg-intro strong { display:block; font-size:14px; color:#172033; } .google-reg-intro small { display:block; margin-top:2px; color:#64748b; font-size:11px; }
+    .google-reg-note { margin-top:4px; padding:11px 12px; border-radius:12px; background:#f8fafc; color:#64748b; font-size:11px; line-height:1.6; border:1px solid #eef2f7; }
+    @media (max-width:650px){ #registerForm{padding:16px;border-radius:17px;} }
 
     @media (max-width: 650px) {
       #authScreen {
@@ -1967,72 +2006,6 @@
     .staff-admin-delete{margin-top:12px;}
 
 
-
-    /* =========================
-       CAMPUSONE UI POLISH
-    ========================= */
-    .user-cell{display:flex;align-items:center;gap:10px;min-width:170px}
-    .user-list-avatar{width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex:none;background:linear-gradient(135deg,#4f46e5,#7c3aed);color:#fff;font-weight:800;overflow:hidden}
-    .user-list-avatar img{width:100%;height:100%;object-fit:cover}
-    .user-cell-name{font-weight:800;line-height:1.25}.user-cell-email{font-size:11px;color:var(--muted);margin-top:2px}
-    .role-badge-admin{background:#ede9fe;color:#6d28d9}.role-badge-mod{background:#dbeafe;color:#1d4ed8}.role-badge-student{background:#e0f2fe;color:#0369a1}
-    .user-table-wrap{overflow-x:auto}
-    .site-footer{margin-top:28px;border-top:1px solid var(--border);padding:24px 4px 30px;color:var(--muted)}
-    .site-footer-inner{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
-    .footer-brand{font-weight:800;color:var(--text)}.footer-copy{font-size:12px;margin-top:4px}
-    .footer-links{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
-    .footer-link{border:0;background:none;color:var(--muted);font:inherit;font-size:12px;font-weight:700;cursor:pointer;padding:4px 0;text-decoration:none}
-    .footer-link:hover{color:var(--primary);text-decoration:underline}
-    .site-info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
-    .site-info-card{padding:16px;border:1px solid var(--border);border-radius:14px;background:var(--card)}
-    .site-info-card h4{margin:0 0 7px;font-size:14px;color:var(--text)}.site-info-card p{margin:0;color:var(--muted);font-size:12px;line-height:1.7}
-    .site-info-card a{color:var(--primary);font-weight:700;text-decoration:none}
-    .dark-mode .topbar{background:rgba(2,6,23,.94);border-color:var(--border)}
-    .dark-mode .mobile-menu,.dark-mode .global-search,.dark-mode .notification-btn,.dark-mode .theme-toggle{background:#111827;color:#e5e7eb;border-color:#334155}
-    .dark-mode .global-search-results,.dark-mode .notification-panel{background:#111827;color:#e5e7eb;border-color:#334155}
-    .dark-mode .search-result:hover,.dark-mode .notification-item:hover{background:#1e293b}
-    .dark-mode .notification-item.unread{background:#1e1b4b}
-    .dark-mode .notification-panel-head,.dark-mode .notification-item{border-color:#263244}
-    .dark-mode .access-toggle{background:#111827;border-color:#334155;color:#e5e7eb}
-    .dark-mode .access-status.unlocked{background:#14532d;color:#bbf7d0}.dark-mode .access-status.locked{background:#450a0a;color:#fecaca}
-    .dark-mode .role-badge-admin{background:#3b0764;color:#e9d5ff}.dark-mode .role-badge-mod{background:#172554;color:#bfdbfe}.dark-mode .role-badge-student{background:#082f49;color:#bae6fd}
-    .dark-mode .table-card table,.dark-mode table{color:#e5e7eb}.dark-mode th{background:#0f172a;color:#cbd5e1;border-color:#334155}.dark-mode td{border-color:#263244;color:#e5e7eb}
-    .dark-mode .site-footer{border-color:#263244}.dark-mode .footer-brand{color:#f8fafc}.dark-mode .site-info-card{background:#111827;border-color:#334155}
-    .dark-mode .badge-success{background:#14532d;color:#bbf7d0}.dark-mode .badge-danger{background:#450a0a;color:#fecaca}.dark-mode .badge-info{background:#172554;color:#bfdbfe}
-    .dark-mode .small-btn{background:#111827;color:#e5e7eb;border-color:#334155}
-    .dark-mode .primary-btn{color:#fff}
-    @media(max-width:700px){
-      .global-search-wrap{display:block!important;position:absolute;left:14px;right:14px;top:72px;width:auto!important;z-index:2500}
-      .global-search{height:42px}
-      .global-search-results{top:48px}
-      .topbar{position:sticky;z-index:2600}
-      .topbar-right{gap:7px}
-      .site-info-grid{grid-template-columns:1fr}
-      .user-table-wrap{overflow:visible}
-      #adminUsersTable thead{display:none}
-      #adminUsersTable,#adminUsersTable tbody,#adminUsersTable tr,#adminUsersTable td{display:block;width:100%}
-      #adminUsersTable tr{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:12px;margin-bottom:10px;box-shadow:0 5px 18px rgba(15,23,42,.06)}
-      #adminUsersTable td{border:0!important;padding:7px 2px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px;text-align:right}
-      #adminUsersTable td:before{font-size:11px;font-weight:800;color:var(--muted);text-align:left;flex:none}
-      #adminUsersTable td:nth-child(1):before{content:"SL"}
-      #adminUsersTable td:nth-child(2):before{content:"Student"}
-      #adminUsersTable td:nth-child(3):before{content:"Roll"}
-      #adminUsersTable td:nth-child(4):before{content:"Academic Year"}
-      #adminUsersTable td:nth-child(5):before{content:"Group"}
-      #adminUsersTable td:nth-child(6):before{content:"Phone"}
-      #adminUsersTable td:nth-child(7):before{content:"Email"}
-      #adminUsersTable td:nth-child(8):before{content:"Role"}
-      #adminUsersTable td:nth-child(9):before{content:"Status"}
-      #adminUsersTable td:nth-child(10):before{content:"Last Seen"}
-      #adminUsersTable td:nth-child(11):before{content:"Created"}
-      #adminUsersTable td:nth-child(2){display:block;text-align:left;padding-bottom:10px;border-bottom:1px solid var(--border)!important;margin-bottom:4px}
-      #adminUsersTable td:nth-child(2):before{display:none}
-      #adminUsersTable td:nth-child(2) .user-cell{width:100%}
-      #adminUsersTable td:nth-child(7){word-break:break-word}
-      #adminUsersTable td:nth-child(8) select{max-width:150px}
-      .site-footer-inner{align-items:flex-start}
-    }
-
     /* =========================
        CAMPUSONE EXTRA FEATURES
     ========================= */
@@ -2052,30 +2025,529 @@
     .analytics-mini{border:1px solid var(--border);background:var(--card);border-radius:15px;padding:15px}.analytics-mini .num{font-size:24px;font-weight:800}.analytics-mini .lbl{font-size:12px;color:var(--muted);margin-top:3px}
 
   
-    /* =========================
-       FIXED FOOTER + NOTIFICATION SCROLL
-    ========================= */
-    #app{min-height:100vh;display:flex;flex-direction:column;}
-    #app main{flex:1;display:flex;flex-direction:column;}
-    .site-footer{position:fixed;left:260px;right:0;bottom:0;z-index:1800;margin:0!important;padding:14px 24px 16px!important;background:var(--card);border-top:1px solid var(--border);box-shadow:0 -6px 20px rgba(15,23,42,.06);}
-    .site-footer-inner{max-width:1500px;margin:0 auto;}
-    #app main{padding-bottom:105px;}
-    .notification-panel{display:flex;flex-direction:column;max-height:min(560px,calc(100vh - 95px));}
-    .notification-panel-head{flex:none;}
-    #notificationList{overflow-y:auto;overflow-x:hidden;max-height:480px;min-height:0;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;}
-    .notification-item{min-height:64px;}
-    @media(max-width:800px){
-      .site-footer{left:0;padding:12px 16px 14px!important;}
-      #app main{padding-bottom:125px;}
-    }
-    @media(max-width:650px){
-      .notification-panel{right:12px!important;top:64px!important;width:min(390px,calc(100vw - 24px));max-height:calc(100vh - 82px);}
-      #notificationList{max-height:calc(100vh - 145px);}
-    }
-    body.dark-mode .site-footer{background:#111827;box-shadow:0 -6px 20px rgba(0,0,0,.25);}
+
+/* =========================================================
+   CAMPUSONE FINAL UI FIX
+   Sidebar scrollbar + dashboard notices + notifications
+   + strong dark-mode readability
+   ========================================================= */
+
+/* Sidebar scrollbar */
+.nav-area{
+  scrollbar-width:thin;
+  scrollbar-color:#818cf8 #0b1220;
+  overflow-y:auto;
+  overflow-x:hidden;
+}
+.nav-area::-webkit-scrollbar{width:7px}
+.nav-area::-webkit-scrollbar-track{
+  background:#0b1220;
+  border-radius:10px;
+}
+.nav-area::-webkit-scrollbar-thumb{
+  background:#6366f1;
+  border-radius:10px;
+  border:1px solid #0b1220;
+}
+.nav-area::-webkit-scrollbar-thumb:hover{background:#a78bfa}
+
+/* Dashboard Recent Notices: content must remain reachable */
+#dashboardNotices{
+  max-height:330px;
+  overflow-y:auto !important;
+  overflow-x:hidden;
+  padding-right:8px;
+  scrollbar-width:thin;
+  scrollbar-color:#6366f1 transparent;
+}
+#dashboardNotices::-webkit-scrollbar{width:6px}
+#dashboardNotices::-webkit-scrollbar-track{background:transparent}
+#dashboardNotices::-webkit-scrollbar-thumb{
+  background:#6366f1;
+  border-radius:10px;
+}
+
+/* Top-right notification list */
+#notificationList{
+  max-height:calc(100vh - 180px);
+  min-height:0;
+  overflow-y:auto !important;
+  overflow-x:hidden;
+  scrollbar-width:thin;
+  scrollbar-color:#6366f1 transparent;
+}
+#notificationList::-webkit-scrollbar{width:6px}
+#notificationList::-webkit-scrollbar-track{background:transparent}
+#notificationList::-webkit-scrollbar-thumb{
+  background:#6366f1;
+  border-radius:10px;
+}
+#notificationPanel{
+  max-height:calc(100vh - 100px);
+  overflow:hidden !important;
+}
+.notification-panel-head{
+  flex-shrink:0;
+}
+
+/* Dark mode variables — brighter readable text */
+body.dark-mode{
+  --bg:#080d18;
+  --card:#111827;
+  --text:#f8fafc;
+  --muted:#c0cad8;
+  --border:#2b374b;
+  --sidebar:#020617;
+  --sidebar-hover:#172033;
+  --sidebar-text:#dbe4f0;
+  background:var(--bg);
+  color:var(--text);
+}
+
+/* Main dark surfaces */
+body.dark-mode .topbar{
+  background:rgba(15,23,42,.96);
+  border-bottom-color:#2b374b;
+}
+body.dark-mode .card,
+body.dark-mode .stat-card,
+body.dark-mode .table-card,
+body.dark-mode .admin-action,
+body.dark-mode .support-ticket,
+body.dark-mode .notification-panel,
+body.dark-mode .modal{
+  background:#111827;
+  border-color:#2b374b;
+  color:#f8fafc;
+}
+
+/* ALL normal text headings */
+body.dark-mode .page-title,
+body.dark-mode .card-title,
+body.dark-mode .section-heading h2,
+body.dark-mode .stat-number,
+body.dark-mode .quick-title,
+body.dark-mode .notice-item h4,
+body.dark-mode .profile-name,
+body.dark-mode .notification-panel-head strong,
+body.dark-mode .notification-item-title{
+  color:#f8fafc !important;
+}
+
+/* Muted text — explicitly override old gray rules */
+body.dark-mode .page-subtitle,
+body.dark-mode .section-heading p,
+body.dark-mode .stat-label,
+body.dark-mode .quick-desc,
+body.dark-mode .notice-item p,
+body.dark-mode .notice-date,
+body.dark-mode .empty,
+body.dark-mode .notification-item-meta,
+body.dark-mode .profile-email,
+body.dark-mode .gallery-meta,
+body.dark-mode .picture-card-meta{
+  color:#c0cad8 !important;
+}
+
+/* Dashboard notices */
+body.dark-mode .notice-item{
+  background:#182235 !important;
+  color:#f8fafc !important;
+  border-left-color:#818cf8;
+  border-top:1px solid rgba(255,255,255,.035);
+  border-right:1px solid rgba(255,255,255,.035);
+  border-bottom:1px solid rgba(255,255,255,.035);
+}
+body.dark-mode .notice-item h4{
+  color:#ffffff !important;
+}
+body.dark-mode .notice-item p{
+  color:#cbd5e1 !important;
+}
+body.dark-mode .notice-date{
+  color:#aebbd0 !important;
+}
+
+/* Notification dropdown */
+body.dark-mode .notification-btn{
+  background:#111827;
+  border-color:#334155;
+  color:#f8fafc;
+}
+body.dark-mode .notification-panel{
+  background:#111827 !important;
+  border-color:#334155;
+  box-shadow:0 25px 70px rgba(0,0,0,.5);
+}
+body.dark-mode .notification-panel-head{
+  border-bottom-color:#2b374b;
+  color:#f8fafc;
+}
+body.dark-mode .notification-item{
+  color:#f8fafc;
+  border-bottom-color:#2b374b;
+}
+body.dark-mode .notification-item:hover{
+  background:#182235;
+}
+body.dark-mode .notification-item.unread{
+  background:#252b52;
+}
+body.dark-mode .notification-item-title{
+  color:#ffffff !important;
+}
+body.dark-mode .notification-item-meta{
+  color:#b9c5d6 !important;
+}
+
+/* Quick Access and other common white components */
+body.dark-mode .quick-btn,
+body.dark-mode .material-card,
+body.dark-mode .result-box,
+body.dark-mode .picture-card,
+body.dark-mode .day-column,
+body.dark-mode .upload-box{
+  background:#111827 !important;
+  color:#f8fafc;
+  border-color:#2b374b;
+}
+body.dark-mode .quick-btn:hover{
+  background:#182235 !important;
+}
+
+/* Inputs / search in dark mode */
+body.dark-mode .global-search,
+body.dark-mode .status-select,
+body.dark-mode .form-input,
+body.dark-mode .form-select,
+body.dark-mode .form-textarea{
+  background:#0f172a !important;
+  color:#f8fafc !important;
+  border-color:#334155 !important;
+}
+body.dark-mode .global-search::placeholder,
+body.dark-mode .form-input::placeholder,
+body.dark-mode .form-textarea::placeholder{
+  color:#94a3b8 !important;
+}
+
+/* Inline hard-coded dark gray text inside dynamic HTML */
+body.dark-mode [style*="color:#64748b"],
+body.dark-mode [style*="color: #64748b"],
+body.dark-mode [style*="color:#475569"],
+body.dark-mode [style*="color: #475569"],
+body.dark-mode [style*="color:#334155"],
+body.dark-mode [style*="color: #334155"],
+body.dark-mode [style*="color:#1f2937"],
+body.dark-mode [style*="color: #1f2937"]{
+  color:#cbd5e1 !important;
+}
+
+/* =========================
+   DARK MODE — AUTH + POPUPS + TOASTS
+   ========================= */
+body.dark-mode #authScreen{
+  background:
+    radial-gradient(circle at 8% 12%, rgba(99,102,241,.20), transparent 27%),
+    radial-gradient(circle at 92% 88%, rgba(124,58,237,.18), transparent 28%),
+    linear-gradient(135deg,#070b14 0%,#0b1220 52%,#111827 100%) !important;
+}
+body.dark-mode .auth-wrapper{
+  background:rgba(17,24,39,.94) !important;
+  border-color:#2b374b !important;
+  box-shadow:0 35px 100px rgba(0,0,0,.55) !important;
+}
+body.dark-mode .auth-panel{
+  background:#111827 !important;
+}
+body.dark-mode .auth-tabs{
+  background:#0f172a !important;
+  border-color:#334155 !important;
+}
+body.dark-mode .auth-tab{
+  color:#aebbd0 !important;
+}
+body.dark-mode .auth-tab.active{
+  background:linear-gradient(135deg,#1e293b,#252b52) !important;
+  color:#a5b4fc !important;
+  box-shadow:0 5px 16px rgba(0,0,0,.25) !important;
+}
+body.dark-mode .auth-form h2,
+body.dark-mode .form-label{
+  color:#f8fafc !important;
+}
+body.dark-mode .auth-subtitle{
+  color:#c0cad8 !important;
+}
+body.dark-mode .form-input,
+body.dark-mode .form-select,
+body.dark-mode .form-textarea{
+  background:#0b1220 !important;
+  color:#f8fafc !important;
+  border-color:#334155 !important;
+}
+body.dark-mode .form-input:focus,
+body.dark-mode .form-select:focus,
+body.dark-mode .form-textarea:focus{
+  background:#0f172a !important;
+  border-color:#818cf8 !important;
+}
+body.dark-mode .link-btn{color:#a5b4fc !important;}
+body.dark-mode .auth-message.error{
+  color:#fecaca !important;
+  background:#3a161b !important;
+  border-color:#7f1d1d !important;
+}
+body.dark-mode .auth-message.success{
+  color:#bbf7d0 !important;
+  background:#0f2a1b !important;
+  border-color:#166534 !important;
+}
+body.dark-mode .modal{
+  background:#111827 !important;
+  color:#f8fafc !important;
+  border:1px solid #2b374b !important;
+  box-shadow:0 30px 90px rgba(0,0,0,.65) !important;
+}
+body.dark-mode .modal-header,
+body.dark-mode .modal-footer{
+  border-color:#2b374b !important;
+}
+body.dark-mode .modal-close{
+  background:#1f2937 !important;
+  color:#f8fafc !important;
+}
+body.dark-mode .modal-backdrop{
+  background:rgba(2,6,23,.78) !important;
+}
+body.dark-mode .toast{
+  background:#111827 !important;
+  color:#f8fafc !important;
+  border-color:#334155 !important;
+  box-shadow:0 16px 45px rgba(0,0,0,.55) !important;
+}
+body.dark-mode .toast.success{border-left-color:#22c55e !important;}
+body.dark-mode .toast.error{border-left-color:#ef4444 !important;}
+body.dark-mode .toast.warning{border-left-color:#f59e0b !important;}
+body.dark-mode .upload-box{
+  background:#0f172a !important;
+  border-color:#475569 !important;
+  color:#f8fafc !important;
+}
+body.dark-mode .upload-box:hover{
+  background:#182235 !important;
+  border-color:#818cf8 !important;
+}
+body.dark-mode .support-picture{
+  background:#0f172a !important;
+  border-color:#334155 !important;
+}
+body.dark-mode .support-message,
+body.dark-mode .support-reply{
+  color:#e5e7eb !important;
+}
+body.dark-mode .support-reply{
+  background:#1b2340 !important;
+}
+body.dark-mode [style*="background:#f8fafc"],
+body.dark-mode [style*="background: #f8fafc"]{
+  background:#0f172a !important;
+  color:#e5e7eb !important;
+}
+body.dark-mode input[type="file"]{
+  color:#cbd5e1 !important;
+}
+body.dark-mode input[type="file"]::file-selector-button{
+  background:#1f2937;
+  color:#f8fafc;
+  border:1px solid #475569;
+  border-radius:8px;
+  padding:6px 10px;
+  margin-right:8px;
+  cursor:pointer;
+}
+body.dark-mode ::selection{
+  background:#4f46e5;
+  color:#fff;
+}
+
+/* Mobile notification panel */
+@media(max-width:650px){
+  #dashboardNotices{max-height:280px}
+  #notificationList{max-height:calc(100vh - 155px)}
+  #notificationPanel{
+    max-height:calc(100vh - 80px);
+  }
+}
 
 
-    .feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}.feature-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px;box-shadow:var(--shadow)}.feature-card h3{margin-bottom:7px}.feature-meta{font-size:12px;color:var(--muted);margin:6px 0}.feature-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.feature-admin-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}.feature-admin-grid .quick-btn{min-height:95px}.status-pill{display:inline-flex;padding:4px 9px;border-radius:999px;font-size:11px;background:rgba(79,70,229,.1)}
+/* ===== Event section dark-mode readability fix ===== */
+body.dark-mode #events,
+body.dark-mode .events-section,
+body.dark-mode .event-section {
+  color: var(--text) !important;
+}
+
+body.dark-mode .event-card,
+body.dark-mode .event-item,
+body.dark-mode .event-box,
+body.dark-mode .events-card,
+body.dark-mode .event-list-item {
+  background: #182235 !important;
+  color: #f8fafc !important;
+  border-color: #2b374b !important;
+}
+
+body.dark-mode .event-card h1,
+body.dark-mode .event-card h2,
+body.dark-mode .event-card h3,
+body.dark-mode .event-card h4,
+body.dark-mode .event-card h5,
+body.dark-mode .event-card h6,
+body.dark-mode .event-item h1,
+body.dark-mode .event-item h2,
+body.dark-mode .event-item h3,
+body.dark-mode .event-item h4,
+body.dark-mode .event-item h5,
+body.dark-mode .event-item h6,
+body.dark-mode .event-box h1,
+body.dark-mode .event-box h2,
+body.dark-mode .event-box h3,
+body.dark-mode .event-box h4,
+body.dark-mode .event-box h5,
+body.dark-mode .event-box h6,
+body.dark-mode .events-card h1,
+body.dark-mode .events-card h2,
+body.dark-mode .events-card h3,
+body.dark-mode .events-card h4,
+body.dark-mode .events-card h5,
+body.dark-mode .events-card h6,
+body.dark-mode .event-list-item h1,
+body.dark-mode .event-list-item h2,
+body.dark-mode .event-list-item h3,
+body.dark-mode .event-list-item h4,
+body.dark-mode .event-list-item h5,
+body.dark-mode .event-list-item h6 {
+  color: #ffffff !important;
+}
+
+body.dark-mode .event-card p,
+body.dark-mode .event-card span,
+body.dark-mode .event-card small,
+body.dark-mode .event-card .muted,
+body.dark-mode .event-item p,
+body.dark-mode .event-item span,
+body.dark-mode .event-item small,
+body.dark-mode .event-item .muted,
+body.dark-mode .event-box p,
+body.dark-mode .event-box span,
+body.dark-mode .event-box small,
+body.dark-mode .events-card p,
+body.dark-mode .events-card span,
+body.dark-mode .events-card small,
+body.dark-mode .event-list-item p,
+body.dark-mode .event-list-item span,
+body.dark-mode .event-list-item small {
+  color: #cbd5e1 !important;
+}
+
+body.dark-mode .event-date,
+body.dark-mode .event-time,
+body.dark-mode .event-location,
+body.dark-mode .event-meta,
+body.dark-mode .event-description,
+body.dark-mode .event-card .date,
+body.dark-mode .event-card .time,
+body.dark-mode .event-card .location,
+body.dark-mode .event-card .meta {
+  color: #c0cad8 !important;
+}
+
+body.dark-mode .event-card input,
+body.dark-mode .event-card select,
+body.dark-mode .event-card textarea,
+body.dark-mode .event-item input,
+body.dark-mode .event-item select,
+body.dark-mode .event-item textarea,
+body.dark-mode .event-box input,
+body.dark-mode .event-box select,
+body.dark-mode .event-box textarea {
+  background: #0f172a !important;
+  color: #f8fafc !important;
+  border-color: #334155 !important;
+}
+
+body.dark-mode .event-card input::placeholder,
+body.dark-mode .event-card textarea::placeholder,
+body.dark-mode .event-item input::placeholder,
+body.dark-mode .event-item textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
+body.dark-mode .event-card table,
+body.dark-mode .event-item table,
+body.dark-mode .event-box table {
+  color: #e2e8f0 !important;
+  background: transparent !important;
+}
+
+body.dark-mode .event-card th,
+body.dark-mode .event-card td,
+body.dark-mode .event-item th,
+body.dark-mode .event-item td,
+body.dark-mode .event-box th,
+body.dark-mode .event-box td {
+  color: #e2e8f0 !important;
+  border-color: #334155 !important;
+}
+
+body.dark-mode .event-card th,
+body.dark-mode .event-item th,
+body.dark-mode .event-box th {
+  background: #111827 !important;
+  color: #f8fafc !important;
+}
+
+body.dark-mode .event-card a,
+body.dark-mode .event-item a,
+body.dark-mode .event-box a,
+body.dark-mode .events-card a {
+  color: #a5b4fc !important;
+}
+
+body.dark-mode .event-card .badge,
+body.dark-mode .event-item .badge,
+body.dark-mode .event-box .badge {
+  color: #f8fafc !important;
+}
+
+body.dark-mode #events .card,
+body.dark-mode #events .section-heading,
+body.dark-mode #events .event-card {
+  border-color: #2b374b !important;
+}
+
+
+/* ===== CampusOne NGC logo setup ===== */
+.brand-icon img,
+.brand-large .brand-icon img,
+.sidebar-brand .brand-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  border-radius: inherit;
+}
+.brand-large .brand-icon img {
+  padding: 4px;
+}
+.sidebar-brand .brand-icon img {
+  padding: 3px;
+}
+
+
+    /* CampusOne NGC Advanced Modules */
+    .toolbar .form-input{min-width:220px;flex:1}.directory-avatar{width:34px;height:34px;border-radius:50%;object-fit:cover}.status-pill{display:inline-flex;padding:4px 9px;border-radius:20px;font-size:11px;font-weight:800;background:#fef3c7;color:#92400e}.status-pill.active{background:#dcfce7;color:#166534}.community-item,.message-item{padding:13px;border:1px solid var(--border);border-radius:12px;margin-bottom:10px;background:#fafbff}.community-item strong,.message-item strong{display:block;margin-bottom:3px}.community-item small,.message-item small{color:var(--muted)}
 </style>
 </head>
 
@@ -2112,7 +2584,7 @@
       <div class="auth-hero">
 
         <div class="brand-large">
-  <div class="brand-icon ngc-logo">NGC</div>
+  <div class="brand-icon ngc-logo"><img src="https://campusonengc.github.io/Campusone.ngc/logo.png" alt="CampusOne NGC logo" /></div>
   <div class="brand-name">CampusOne NGC</div>
 </div>
         <h1>
@@ -2282,23 +2754,7 @@
             </div>
 
 
-            <div class="form-group">
-              <label class="form-label">Account Type</label>
-              <div class="input-wrap">
-                <span>🪪</span>
-                <select id="registerAccountType" class="form-select" onchange="updateRegisterFields()">
-                  <option value="student">Student</option>
-                  <option value="teacher">Teacher</option>
-                  <option value="staff">Staff</option>
-                  <option value="guardian">Guardian</option>
-                  <option value="alumni">Alumni</option>
-                </select>
-              </div>
-            </div>
-
-
-            <div id="studentRegisterFields">
-            <div class="form-group">
+            <div class="form-group" id="registerRollGroup">
               <label class="form-label">Roll</label>
               <div class="input-wrap">
                 <span>🎓</span>
@@ -2308,20 +2764,46 @@
 
 
             <div class="form-group">
-              <label class="form-label">Academic Year</label>
+              <label class="form-label">Account Type</label>
+              <div class="input-wrap">
+                <span>👥</span>
+                <select id="registerAccountType" class="form-select" onchange="updateRegistrationFields()">
+                  <option value="">Account Type নির্বাচন করুন</option>
+                  <option value="student">Student</option>
+                  <option value="teacher">Teacher</option>
+                  <option value="staff">Staff</option>
+                  <option value="guardian">Guardian</option>
+                  <option value="alumni">Alumni</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group" id="registerAcademicYearGroup">
+              <label class="form-label">Academic Year / Category</label>
               <div class="input-wrap">
                 <span>📚</span>
-                <select id="registerAcademicYear" class="form-select">
-                  <option value="">Academic Year নির্বাচন করুন</option>
+                <select id="registerAcademicYear" class="form-select" onchange="updateRegistrationFields()">
+                  <option value="">Academic Year / Category নির্বাচন করুন</option>
                   <option value="HSC 1st Year">HSC 1st Year</option>
-                  <option value="HSC 2nd Year">HSC 2nd Year</option><option value="Degree 1st Year">Degree 1st Year</option><option value="Degree 2nd Year">Degree 2nd Year</option><option value="Degree 3rd Year">Degree 3rd Year</option><option value="Degree 4th Year">Degree 4th Year</option><option value="Honours 1st Year">Honours 1st Year</option><option value="Honours 2nd Year">Honours 2nd Year</option><option value="Honours 3rd Year">Honours 3rd Year</option><option value="Honours 4th Year">Honours 4th Year</option>
+                  <option value="HSC 2nd Year">HSC 2nd Year</option>
+                  <option value="Degree 1st Year">Degree 1st Year</option>
+                  <option value="Degree 2nd Year">Degree 2nd Year</option>
+                  <option value="Degree 3rd Year">Degree 3rd Year</option>
+                  <option value="Degree 4th Year">Degree 4th Year</option>
+                  <option value="Honours 1st Year">Honours 1st Year</option>
+                  <option value="Honours 2nd Year">Honours 2nd Year</option>
+                  <option value="Honours 3rd Year">Honours 3rd Year</option>
+                  <option value="Honours 4th Year">Honours 4th Year</option>
+                  <option value="Teacher">Teacher</option>
+                  <option value="Staff">Staff</option>
+                  <option value="Guardian">Guardian</option>
                 </select>
               </div>
             </div>
 
 
-            <div class="form-group">
-              <label class="form-label">Group</label>
+            <div class="form-group" id="registerGroupGroup">
+              <label class="form-label">Group <span id="registerGroupOptional" style="color:#94a3b8;font-size:11px;"></span></label>
               <div class="input-wrap">
                 <span>🧪</span>
                 <select id="registerGroup" class="form-select">
@@ -2329,12 +2811,11 @@
                   <option value="Science">Science</option>
                   <option value="Humanities">Humanities</option>
                   <option value="Business Studies">Business Studies</option>
+                  <option value="N/A">N/A</option>
                 </select>
               </div>
             </div>
 
-
-            </div>
 
             <div class="form-group">
               <label class="form-label">Phone Number</label>
@@ -2395,14 +2876,14 @@
               Register করুন
             </button>
 
-            <div style="display:flex;align-items:center;gap:10px;margin:18px 0;color:#94a3b8;font-size:12px;">
-              <span style="height:1px;background:#e2e8f0;flex:1;"></span><span>অথবা</span><span style="height:1px;background:#e2e8f0;flex:1;"></span>
-            </div>
-            <button id="googleRegisterBtn" class="secondary-btn" style="width:100%;padding:13px;" onclick="registerWithGoogle()">
-              <span style="font-weight:800;">G</span>&nbsp; Google দিয়ে Registration
-            </button>
-
             <div id="registerMessage" class="auth-message"></div>
+
+            <div class="google-register-divider">
+              <span></span><b>অথবা</b><span></span>
+            </div>
+            <button id="googleRegisterBtn" class="secondary-btn google-register-btn" onclick="registerWithGoogle()">
+              <span class="google-g-icon">G</span><span>Google দিয়ে Registration</span>
+            </button>
 
           </div>
 
@@ -2427,7 +2908,7 @@
 
       <div class="sidebar-brand">
 
-        <div class="brand-icon">NGC</div>
+        <div class="brand-icon"><img src="https://campusonengc.github.io/Campusone.ngc/logo.png" alt="CampusOne NGC logo" /></div>
 
         <span>CampusOne NGC</span>
 
@@ -2510,12 +2991,15 @@
           <span class="nav-icon">🖼️</span>
           <span>Gallery</span>
         </button>
-
-        <button class="nav-item" data-page="assignments" onclick="showPage('assignments', this)"><span class="nav-icon">📝</span><span>Assignments</span></button>
-        <button class="nav-item" data-page="calendar" onclick="showPage('calendar', this)"><span class="nav-icon">📅</span><span>Academic Calendar</span></button>
-        <button class="nav-item" data-page="achievements" onclick="showPage('achievements', this)"><span class="nav-icon">🏆</span><span>Achievements</span></button>
-        <button class="nav-item" data-page="clubs" onclick="showPage('clubs', this)"><span class="nav-icon">🤝</span><span>Clubs & Rover</span></button>
-        <button class="nav-item" data-page="alumni" onclick="showPage('alumni', this)"><span class="nav-icon">🎓</span><span>Alumni Directory</span></button>
+        <button class="nav-item" data-page="directory" onclick="showPage('directory', this);loadUserDirectory()">
+          <span class="nav-icon">👥</span><span>User Directory</span>
+        </button>
+        <button class="nav-item" data-page="community" onclick="showPage('community', this);loadCommunityHub()">
+          <span class="nav-icon">🏫</span><span>Community</span>
+        </button>
+        <button class="nav-item" data-page="messages" onclick="showPage('messages', this);loadMessages()">
+          <span class="nav-icon">💬</span><span>Messages</span>
+        </button>
 
 <div class="nav-title">Account</div>
 
@@ -2603,7 +3087,7 @@
             </div>
 
             <div class="page-subtitle">
-              CampusOne NGC! Niamatpur Govt. College Student Portal
+                
             </div>
 
           </div>
@@ -3209,6 +3693,23 @@
              ADMIN
         ========================= -->
 
+        <section id="page-directory" class="page">
+          <div class="section-header"><div class="section-heading"><h2>👥 User Directory</h2><p>Search students, teachers, staff, guardians and alumni.</p></div></div>
+          <div class="card"><div class="card-body">
+            <div class="toolbar"><input id="directorySearch" class="form-input" placeholder="নাম, ID, বিভাগ বা বর্ষ দিয়ে খুঁজুন" oninput="filterDirectory()"><select id="directoryType" class="form-select" onchange="filterDirectory()"><option value="">সব Account Type</option><option>student</option><option>teacher</option><option>staff</option><option>guardian</option><option>alumni</option></select></div>
+            <div class="table-card" style="margin-top:15px"><table><thead><tr><th>Name / ID</th><th>Type</th><th>Academic Year</th><th>Department / Group</th><th>Status</th></tr></thead><tbody id="directoryTable"><tr><td colspan="5">Loading...</td></tr></tbody></table></div>
+          </div></div>
+        </section>
+        <section id="page-community" class="page">
+          <div class="section-header"><div class="section-heading"><h2>🏫 College Community</h2><p>Clubs, Rover Scout, achievements and alumni.</p></div></div>
+          <div class="grid-2"><div class="card"><div class="card-header"><div class="card-title">Clubs & Organizations</div><button class="small-btn" onclick="openCommunityModal('clubs')">+ Add</button></div><div class="card-body" id="clubsList">Loading...</div></div>
+          <div class="card"><div class="card-header"><div class="card-title">Achievements</div><button class="small-btn" onclick="openCommunityModal('achievements')">+ Add</button></div><div class="card-body" id="achievementsList">Loading...</div></div></div>
+        </section>
+        <section id="page-messages" class="page">
+          <div class="section-header"><div class="section-heading"><h2>💬 Internal Communication</h2><p>Send and receive portal messages.</p></div><button class="primary-btn" onclick="openMessageModal()">New Message</button></div>
+          <div class="card"><div class="card-body" id="messagesList">Loading...</div></div>
+        </section>
+
         <section id="page-admin" class="page">
 
           <div class="section-header">
@@ -3236,6 +3737,21 @@
             <div class="stat-card"><div class="stat-icon">👁️</div><div><div id="adminTotalViews" class="stat-number">0</div><div class="stat-label">Total Website Views</div><div id="adminTodayViews" style="font-size:11px;color:#94a3b8;margin-top:3px;">Today: 0</div></div></div>
             <div class="stat-card"><div class="stat-icon">👑</div><div><div id="adminAdminCount" class="stat-number">0</div><div class="stat-label">Admins</div></div></div>
             <div class="stat-card"><div class="stat-icon">🛡️</div><div><div id="adminModeratorCount" class="stat-number">0</div><div class="stat-label">Moderators</div></div></div>
+            <div class="stat-card"><div class="stat-icon">🎓</div><div><div id="adminStudentTotalCount" class="stat-number">0</div><div class="stat-label">All Students</div></div></div>
+            <div class="stat-card"><div class="stat-icon">👨‍🏫</div><div><div id="adminTeacherCount" class="stat-number">0</div><div class="stat-label">Teachers</div></div></div>
+            <div class="stat-card"><div class="stat-icon">🧑‍💼</div><div><div id="adminStaffCount" class="stat-number">0</div><div class="stat-label">Staff</div></div></div>
+            <div class="stat-card"><div class="stat-icon">👨‍👩‍👧</div><div><div id="adminGuardianCount" class="stat-number">0</div><div class="stat-label">Guardians</div></div></div>
+            <div class="stat-card"><div class="stat-icon">🏅</div><div><div id="adminAlumniCount" class="stat-number">0</div><div class="stat-label">Alumni</div></div></div>
+            <div class="stat-card"><div class="stat-icon">📘</div><div><div id="adminHsc1Count" class="stat-number">0</div><div class="stat-label">HSC 1st Year</div></div></div>
+            <div class="stat-card"><div class="stat-icon">📗</div><div><div id="adminHsc2Count" class="stat-number">0</div><div class="stat-label">HSC 2nd Year</div></div></div>
+            <div class="stat-card"><div class="stat-icon">1️⃣</div><div><div id="adminDegree1Count" class="stat-number">0</div><div class="stat-label">Degree 1st Year</div></div></div>
+            <div class="stat-card"><div class="stat-icon">2️⃣</div><div><div id="adminDegree2Count" class="stat-number">0</div><div class="stat-label">Degree 2nd Year</div></div></div>
+            <div class="stat-card"><div class="stat-icon">3️⃣</div><div><div id="adminDegree3Count" class="stat-number">0</div><div class="stat-label">Degree 3rd Year</div></div></div>
+            <div class="stat-card"><div class="stat-icon">4️⃣</div><div><div id="adminDegree4Count" class="stat-number">0</div><div class="stat-label">Degree 4th Year</div></div></div>
+            <div class="stat-card"><div class="stat-icon">1️⃣</div><div><div id="adminHonours1Count" class="stat-number">0</div><div class="stat-label">Honours 1st Year</div></div></div>
+            <div class="stat-card"><div class="stat-icon">2️⃣</div><div><div id="adminHonours2Count" class="stat-number">0</div><div class="stat-label">Honours 2nd Year</div></div></div>
+            <div class="stat-card"><div class="stat-icon">3️⃣</div><div><div id="adminHonours3Count" class="stat-number">0</div><div class="stat-label">Honours 3rd Year</div></div></div>
+            <div class="stat-card"><div class="stat-icon">4️⃣</div><div><div id="adminHonours4Count" class="stat-number">0</div><div class="stat-label">Honours 4th Year</div></div></div>
           </div>
 
           <div class="analytics-grid">
@@ -3374,12 +3890,6 @@
               <p>Click করে Website On / Off করুন।</p>
             </div>
 
-            <div id="adminSiteInfoAction" class="admin-action" onclick="openSiteInfoModal()">
-              <div class="admin-action-icon">🔗</div>
-              <h3>Website Info & Links</h3>
-              <p>Developer, Facebook Group ও About তথ্য edit করুন।</p>
-            </div>
-
             <div id="adminModeratorAccessAction" class="admin-action" onclick="openModeratorAccessPanel()">
               <div class="admin-action-icon">🛡️</div>
               <h3>Moderator Access</h3>
@@ -3431,14 +3941,14 @@
             </div>
 
 
-            <div class="table-card user-table-wrap">
+            <div class="table-card">
 
               <table>
 
                 <thead>
 
                   <tr>
-                    <th>SL</th><th>Name</th><th>Roll</th><th>Academic Year</th><th>Group</th><th>Phone</th><th>Email</th><th>Role / Access</th><th>Status</th><th>Last Seen</th><th>Created</th>
+                    <th>SL</th><th>Name</th><th>Roll</th><th>Account Type</th><th>Academic Year</th><th>Group</th><th>Phone</th><th>Email</th><th>Role / Access</th><th>Status</th><th>Last Seen</th><th>Created</th>
                   </tr>
 
                 </thead>
@@ -3455,33 +3965,7 @@
 
       </div>
 
-    
-
-        <!-- =========================
-             EXTENDED CAMPUS FEATURES
-        ========================= -->
-        <section id="page-assignments" class="page"><div class="section-header"><div class="section-heading"><h2>Assignments</h2><p>Class tasks, deadlines and submissions.</p></div><button class="primary-btn" onclick="openFeatureModal('assignments')">+ New Assignment</button></div><div id="assignmentsGrid" class="feature-grid"><div class="empty">Loading...</div></div></section>
-        <section id="page-calendar" class="page"><div class="section-header"><div class="section-heading"><h2>Academic Calendar</h2><p>Exam, class, holiday and campus dates.</p></div><button class="primary-btn" onclick="openFeatureModal('calendar')">+ Add Date</button></div><div id="calendarGrid" class="feature-grid"><div class="empty">Loading...</div></div></section>
-        <section id="page-achievements" class="page"><div class="section-header"><div class="section-heading"><h2>Achievements</h2><p>Students, teachers and campus achievements.</p></div><button class="primary-btn" onclick="openFeatureModal('achievements')">+ Add Achievement</button></div><div id="achievementsGrid" class="feature-grid"><div class="empty">Loading...</div></div></section>
-        <section id="page-clubs" class="page"><div class="section-header"><div class="section-heading"><h2>Clubs & Rover</h2><p>Campus clubs, Rover Scout and activities.</p></div><button class="primary-btn" onclick="openFeatureModal('clubs')">+ Add Club</button></div><div id="clubsGrid" class="feature-grid"><div class="empty">Loading...</div></div></section>
-        <section id="page-alumni" class="page"><div class="section-header"><div class="section-heading"><h2>Alumni Directory</h2><p>Search and connect with former students.</p></div></div><div class="toolbar"><input id="alumniSearch" class="form-input" placeholder="Search alumni..." oninput="renderAlumni()"></div><div id="alumniGrid" class="feature-grid"><div class="empty">Loading...</div></div></section>
-
-        <section id="page-feature-admin" class="page"><div class="section-header"><div class="section-heading"><h2>Campus Management</h2><p>Approvals, verification, logs, export and user controls.</p></div></div><div class="card"><div class="card-body"><div class="feature-admin-grid"><button class="quick-btn" onclick="loadFeatureUsers()">👥 User Management</button><button class="quick-btn" onclick="loadPendingUsers()">✅ Approval Queue</button><button class="quick-btn" onclick="loadActivityLog()">🧾 Activity Log</button><button class="quick-btn" onclick="exportUsersCSV()">⬇️ Export Users CSV</button></div></div></div><div id="featureAdminContent" class="card" style="margin-top:18px;"><div class="card-body"><div class="empty">Choose a management tool.</div></div></div></section>
-
-      <footer class="site-footer">
-        <div class="site-footer-inner">
-          <div>
-            <div id="footerBrand" class="footer-brand">CampusOne NGC</div>
-            <div id="footerCopyright" class="footer-copy">© 2026 CampusOne NGC. All rights reserved.</div>
-          </div>
-          <div class="footer-links">
-            <button class="footer-link" onclick="openSiteInfo('about')">About</button>
-            <button class="footer-link" onclick="openSiteInfo('developer')">Developer</button>
-            <a id="footerFacebook" class="footer-link" href="#" target="_blank" rel="noopener">Facebook Group</a>
-          </div>
-        </div>
-      </footer>
-</main>
+    </main>
 
   </div>
 
@@ -4050,6 +4534,7 @@
 
       const roll = document.getElementById("registerRoll")?.value.trim() || "";
       const academicYear = document.getElementById("registerAcademicYear")?.value || "";
+      const accountType = document.getElementById("registerAccountType")?.value || "student";
       const group = document.getElementById("registerGroup")?.value || "";
       const phone = document.getElementById("registerPhone")?.value.trim() || "";
 
@@ -4080,9 +4565,14 @@
       }
 
 
-      if (!/^\d+$/.test(roll) || Number(roll) < 1) { setMessage("registerMessage", "Roll অবশ্যই integer number হতে হবে।", "error"); return; }
-      if (!academicYear) { setMessage("registerMessage", "Academic Year নির্বাচন করুন।", "error"); return; }
-      if (!group) { setMessage("registerMessage", "Group নির্বাচন করুন।", "error"); return; }
+      if (!["student","teacher","staff","guardian","alumni"].includes(accountType)) { setMessage("registerMessage", "Account Type নির্বাচন করুন।", "error"); return; }
+      if (accountType === "student") {
+        if (!/^\d+$/.test(roll) || Number(roll) < 1) { setMessage("registerMessage", "Student-এর Roll অবশ্যই integer number হতে হবে।", "error"); return; }
+        if (!academicYear) { setMessage("registerMessage", "Academic Year / Category নির্বাচন করুন।", "error"); return; }
+        if (!group) { setMessage("registerMessage", "Student-এর Group নির্বাচন করুন।", "error"); return; }
+      } else {
+        // Teacher / Staff / Guardian / Alumni-এর জন্য Roll, Academic Year ও Group প্রয়োজন নেই।
+      }
       if (!/^01\d{9}$/.test(phone)) { setMessage("registerMessage", "সঠিক 11 digit Phone Number দিন।", "error"); return; }
 
       if (password.length < 6) {
@@ -4130,16 +4620,12 @@
             uid: credential.user.uid,
             name: name,
             email: email,
-            roll: roll,
-            academicYear: academicYear,
-            group: group,
+            roll: accountType === "student" ? roll : "",
+            academicYear: accountType === "student" ? academicYear : "",
+            group: accountType === "student" ? group : "N/A",
             phone: phone,
             role: "student",
-            accountType: "student",
-            uniqueId: "NGC-" + credential.user.uid.slice(0, 8).toUpperCase(),
-            verified: false,
-            approved: true,
-            blocked: false,
+            accountType: accountType,
             photoURL: credential.user.photoURL || "",
             createdAt: serverTimestamp()
           }
@@ -4263,28 +4749,91 @@
 
     async function collectGoogleRegistration(user) {
       const body = `
-        <div class="form-group"><label class="form-label">Account Type *</label><select id="googleRegAccountType" class="form-select" onchange="updateGoogleRegisterFields()"><option value="student">Student</option><option value="teacher">Teacher</option><option value="staff">Staff</option><option value="guardian">Guardian</option><option value="alumni">Alumni</option></select></div>
+        <div class="google-reg-intro"><div class="google-reg-icon">G</div><div><strong>Google Registration</strong><small>আপনার প্রয়োজনীয় তথ্য দিন</small></div></div>
         <div class="form-group"><label class="form-label">পূর্ণ নাম *</label><input id="googleRegName" class="form-input" value="${escapeHtml(user.displayName || "")}" placeholder="তোমার পূর্ণ নাম"></div>
-        <div class="form-group"><label class="form-label">Roll</label><input id="googleRegRoll" class="form-input" type="number" min="1" step="1" inputmode="numeric" placeholder="তোমার Roll"></div>
-        <div class="form-group"><label class="form-label">Academic Year</label><select id="googleRegAcademicYear" class="form-select"><option value="">Academic Year নির্বাচন করুন</option><option>HSC 1st Year</option><option>HSC 2nd Year</option><option>Degree 1st Year</option><option>Degree 2nd Year</option><option>Degree 3rd Year</option><option>Degree 4th Year</option><option>Honours 1st Year</option><option>Honours 2nd Year</option><option>Honours 3rd Year</option><option>Honours 4th Year</option></select></div>
-        <div class="form-group"><label class="form-label">Group</label><select id="googleRegGroup" class="form-select"><option value="">Group নির্বাচন করুন</option><option>Science</option><option>Humanities</option><option>Business Studies</option><option>N/A</option></select></div>
+        <div class="form-group"><label class="form-label">Account Type *</label><select id="googleRegAccountType" class="form-select" onchange="updateGoogleRegistrationFields()"><option value="">Account Type নির্বাচন করুন</option><option value="student">Student</option><option value="teacher">Teacher</option><option value="staff">Staff</option><option value="guardian">Guardian</option><option value="alumni">Alumni</option></select></div>
+        <div class="form-group" id="googleRegRollGroup"><label class="form-label">Roll *</label><input id="googleRegRoll" class="form-input" type="number" min="1" step="1" inputmode="numeric" placeholder="তোমার Roll"></div>
+        <div class="form-group" id="googleRegAcademicYearGroup"><label class="form-label">Academic Year / Category *</label><select id="googleRegAcademicYear" class="form-select" onchange="updateGoogleRegistrationFields()"><option value="">Academic Year / Category নির্বাচন করুন</option><option>HSC 1st Year</option><option>HSC 2nd Year</option><option>Degree 1st Year</option><option>Degree 2nd Year</option><option>Degree 3rd Year</option><option>Degree 4th Year</option><option>Honours 1st Year</option><option>Honours 2nd Year</option><option>Honours 3rd Year</option><option>Honours 4th Year</option></select></div>
+        <div class="form-group" id="googleRegGroupGroup"><label class="form-label">Group *</label><select id="googleRegGroup" class="form-select"><option value="">Group নির্বাচন করুন</option><option>Science</option><option>Humanities</option><option>Business Studies</option></select></div>
         <div class="form-group"><label class="form-label">Phone Number *</label><input id="googleRegPhone" class="form-input" type="tel" inputmode="numeric" maxlength="11" placeholder="01XXXXXXXXX"></div>
-        <div class="form-group"><label class="form-label">Google Email</label><input class="form-input" value="${escapeHtml(user.email || "")}" disabled></div>`;
+        <div class="form-group"><label class="form-label">Google Email</label><input class="form-input" value="${escapeHtml(user.email || "")}" disabled></div>
+        <div class="google-reg-note">Google account দিয়ে authentication হবে। Teacher, Staff ও Guardian-এর জন্য Roll/Academic Year লাগবে না।</div>`;
       openModal("Complete Registration", body, async () => {
-        const type=document.getElementById("googleRegAccountType")?.value||"student";
         const name=document.getElementById("googleRegName")?.value.trim()||"";
         const roll=document.getElementById("googleRegRoll")?.value.trim()||"";
+        const accountType=document.getElementById("googleRegAccountType")?.value||"";
         const academicYear=document.getElementById("googleRegAcademicYear")?.value||"";
-        const group=document.getElementById("googleRegGroup")?.value||"N/A";
+        const group=document.getElementById("googleRegGroup")?.value||"";
         const phone=document.getElementById("googleRegPhone")?.value.trim()||"";
-        if(!name||!/^01\d{9}$/.test(phone)||(type==='student'&&(!/^\d+$/.test(roll)||Number(roll)<1||!academicYear||group==='N/A'))){showToast("সব registration information সঠিকভাবে দিন।","warning");return;}
-        try { await updateProfile(user,{displayName:name}); await setDoc(doc(db,"users",user.uid),{uid:user.uid,name,email:user.email||"",roll:type==='student'?roll:"",academicYear:type==='student'?academicYear:"",group:type==='student'?group:"N/A",phone,accountType:type,role:type,uniqueId:"NGC-"+user.uid.slice(0,8).toUpperCase(),verified:false,approved:true,blocked:false,photoURL:user.photoURL||"",createdAt:serverTimestamp(),authProvider:"google"}); closeModal(); showToast("Google Registration সম্পূর্ণ হয়েছে।","success"); location.reload(); }
-        catch(e){console.error(e);showToast("Registration information save হয়নি।","error");}
+        if(!name||!accountType||!/^01\d{9}$/.test(phone)){showToast("সব প্রয়োজনীয় registration information সঠিকভাবে দিন।","warning");return;}
+        if(accountType==="student" && (!/^\d+$/.test(roll)||Number(roll)<1||!academicYear||!group)){showToast("Student-এর Roll, Academic Year ও Group সম্পূর্ণ করুন।","warning");return;}
+        try {
+          await updateProfile(user,{displayName:name});
+          await setDoc(doc(db,"users",user.uid),{uid:user.uid,name,email:user.email||"",roll:accountType==="student"?roll:"",academicYear:accountType==="student"?academicYear:"",group:accountType==="student"?group:"N/A",phone,role:"student",accountType,photoURL:user.photoURL||"",createdAt:serverTimestamp(),authProvider:"google"});
+          closeModal();
+          showToast("Google Registration সম্পূর্ণ হয়েছে।","success");
+          location.reload();
+        } catch(e){console.error(e);showToast("Registration information save হয়নি।","error");}
       }, "Complete Registration");
-      setTimeout(()=>window.updateGoogleRegisterFields(),0);
       document.getElementById("googleRegPhone")?.addEventListener("input",function(){this.value=this.value.replace(/\D/g,"").slice(0,11);});
+      updateGoogleRegistrationFields();
     }
 
+    window.updateRegistrationFields=function(){
+      const type=document.getElementById("registerAccountType")?.value||"";
+      const rollWrap=document.getElementById("registerRollGroup");
+      const yearWrap=document.getElementById("registerAcademicYearGroup");
+      const groupWrap=document.getElementById("registerGroupGroup");
+      const roll=document.getElementById("registerRoll");
+      const year=document.getElementById("registerAcademicYear");
+      const group=document.getElementById("registerGroup");
+      const student=type==="student";
+      [rollWrap,yearWrap,groupWrap].forEach(el=>{if(el) el.classList.toggle("hidden",!student);});
+      if(roll) roll.required=student;
+      if(year) year.required=student;
+      if(group) { group.required=student; if(!student) group.value="N/A"; }
+    };
+    window.updateGoogleRegistrationFields=function(){
+      const type=document.getElementById("googleRegAccountType")?.value||"";
+      const student=type==="student";
+      ["googleRegRollGroup","googleRegAcademicYearGroup","googleRegGroupGroup"].forEach(id=>{const el=document.getElementById(id);if(el)el.classList.toggle("hidden",!student);});
+      const roll=document.getElementById("googleRegRoll"), year=document.getElementById("googleRegAcademicYear"), group=document.getElementById("googleRegGroup");
+      if(roll) roll.required=student; if(year) year.required=student; if(group) group.required=student;
+    };
+    updateRegistrationFields();
+
+    async function googleAuthFlow(buttonId, messageId) {
+      const btn=document.getElementById(buttonId);
+      if(btn){btn.disabled=true;btn.textContent="Google account যাচাই হচ্ছে...";}
+      try {
+        const provider=new GoogleAuthProvider();
+        provider.setCustomParameters({prompt:"select_account"});
+        const result=await signInWithPopup(auth,provider);
+        const user=result.user;
+        const ref=doc(db,"users",user.uid);
+        const snap=await getDoc(ref);
+        if(!snap.exists()){
+          await collectGoogleRegistration(user);
+          return;
+        }
+        const data=snap.data()||{};
+        const isStudent=(data.accountType||"student")==="student";
+        const complete=!!data.name && !!data.accountType && (!isStudent || (!!data.roll && !!data.academicYear && !!data.group)) && /^01\d{9}$/.test(String(data.phone||""));
+        if(!complete){
+          await collectGoogleRegistration(user);
+          return;
+        }
+        if(user.photoURL && !data.photoURL) await updateDoc(ref,{photoURL:user.photoURL,updatedAt:serverTimestamp()});
+        showToast("Google Login সফল হয়েছে।","success");
+      } catch(error){
+        console.error(error);
+        setMessage(messageId,friendlyAuthError(error),"error");
+      } finally {
+        if(btn){btn.disabled=false;btn.innerHTML=buttonId==="googleRegisterBtn"?'<span style="font-weight:800;">G</span>&nbsp; Google দিয়ে Registration':'<span style="font-weight:800;">G</span>&nbsp; Google দিয়ে Login';}
+      }
+    }
+
+    window.loginWithGoogle = () => googleAuthFlow("googleLoginBtn","loginMessage");
     window.registerWithGoogle = () => googleAuthFlow("googleRegisterBtn","registerMessage");
 
     /* =========================
@@ -4345,11 +4894,8 @@
       }
 
 
-      if (currentProfile?.role === "admin" || currentProfile?.role === "moderator") {
-        await loadModeratorPermissions();
-      }
+      await loadModeratorPermissions();
       updateUserUI();
-      loadSiteInfo();
 
     }
 
@@ -4520,8 +5066,7 @@
         users: "adminUsersAction",
         staff: "adminStaffAction",
         gallery: "adminGalleryAction",
-        maintenance: "adminMaintenanceAction",
-        siteInfo: "adminSiteInfoAction"
+        maintenance: "adminMaintenanceAction"
       };
       Object.entries(permissionElements).forEach(([key, id]) => {
         const el = document.getElementById(id);
@@ -6668,8 +7213,7 @@ try {
             <div class="support-message">
               ${escapeHtml(t.message || "")}
             </div>
-            ${t.imageUrl?`<div class="support-picture"><a href="${escapeHtml(t.imageUrl)}" target="_blank" rel="noopener"><img src="${escapeHtml(t.imageUrl)}" alt="Support attachment"></a></div>`:""}
-            ${t.imageUrl?`<div class="support-picture"><a href="${escapeHtml(t.imageUrl)}" target="_blank" rel="noopener"><img src="${escapeHtml(t.imageUrl)}" alt="Support attachment"></a></div>`:""}
+            ${t.imageUrl ? `<div class="support-picture"><a href="${escapeHtml(t.imageUrl)}" target="_blank" rel="noopener"><img src="${escapeHtml(t.imageUrl)}" alt="Support attachment"></a></div>` : ""}
 
             ${
               t.adminReply
@@ -7092,7 +7636,7 @@ try {
 
         const users =
           snap.docs.map(
-            d => ({ id: d.id, ...d.data() })
+            d => d.data()
           );
 
 
@@ -7112,7 +7656,7 @@ try {
 
           tbody.innerHTML =
             `<tr>
-              <td colspan="9">
+              <td colspan="12">
                 কোনো user পাওয়া যায়নি।
               </td>
             </tr>`;
@@ -7129,24 +7673,24 @@ try {
               <td><strong>${index + 1}</strong></td>
 
               <td>
-                <div class="user-cell">
-                  <div class="user-list-avatar">${u.photoURL ? `<img src="${escapeHtml(u.photoURL)}" alt="">` : escapeHtml(String(u.name || "U").trim().charAt(0).toUpperCase() || "U")}</div>
-                  <div><div class="user-cell-name">${escapeHtml(u.name || "Unnamed Student")}</div><div class="user-cell-email">${escapeHtml(u.email || "No email")}</div></div>
-                </div>
+                ${escapeHtml(
+                  u.name || "—"
+                )}
               </td>
 
               <td>${escapeHtml(u.roll || "—")}</td>
+              <td>${escapeHtml(u.accountType || "student")}</td>
               <td>${escapeHtml(u.academicYear || "—")}</td>
               <td>${escapeHtml(u.group || "—")}</td>
               <td>${escapeHtml(u.phone || "—")}</td>
               <td>${escapeHtml(u.email || "—")}</td>
 
               <td>
-                ${u.role === "admin" ? `<span class="badge role-badge-admin">👑 Admin</span>` : isAdmin() ? `
-                  <select class="form-select" style="min-width:130px;" onchange="changeUserRole('${escapeHtml(u.id || u.uid || "")}', this.value)">
-                    <option value="student" ${u.role === "student" ? "selected" : ""}>🎓 Student</option>
-                    <option value="moderator" ${u.role === "moderator" ? "selected" : ""}>🛡️ Moderator</option>
-                  </select>` : u.role === "moderator" ? `<span class="badge role-badge-mod">🛡️ Moderator</span>` : `<span class="badge role-badge-student">🎓 Student</span>`}
+                ${u.role === "admin" ? `<span class="badge badge-purple">Admin</span>` : isAdmin() ? `
+                  <select class="form-select" style="min-width:130px;" onchange="changeUserRole('${escapeHtml(u.uid || "")}', this.value)">
+                    <option value="student" ${u.role === "student" ? "selected" : ""}>Student</option>
+                    <option value="moderator" ${u.role === "moderator" ? "selected" : ""}>Moderator</option>
+                  </select>` : u.role === "moderator" ? `<span class="badge badge-info">Moderator</span>` : `<span class="badge badge-info">Student</span>`}
               </td>
               <td>
                 <div class="admin-users-actions">
@@ -7298,6 +7842,23 @@ try {
       const totalViewsEl = document.getElementById("adminTotalViews");
       const adminEl = document.getElementById("adminAdminCount");
       const modEl = document.getElementById("adminModeratorCount");
+      const studentTotalEl = document.getElementById("adminStudentTotalCount");
+      const teacherEl = document.getElementById("adminTeacherCount");
+      const staffEl = document.getElementById("adminStaffCount");
+      const guardianEl = document.getElementById("adminGuardianCount");
+      const alumniEl = document.getElementById("adminAlumniCount");
+      const yearCountEls = {
+        "HSC 1st Year": document.getElementById("adminHsc1Count"),
+        "HSC 2nd Year": document.getElementById("adminHsc2Count"),
+        "Degree 1st Year": document.getElementById("adminDegree1Count"),
+        "Degree 2nd Year": document.getElementById("adminDegree2Count"),
+        "Degree 3rd Year": document.getElementById("adminDegree3Count"),
+        "Degree 4th Year": document.getElementById("adminDegree4Count"),
+        "Honours 1st Year": document.getElementById("adminHonours1Count"),
+        "Honours 2nd Year": document.getElementById("adminHonours2Count"),
+        "Honours 3rd Year": document.getElementById("adminHonours3Count"),
+        "Honours 4th Year": document.getElementById("adminHonours4Count")
+      };
       const galleryEl = document.getElementById("adminGalleryCount");
       const supportEl = document.getElementById("adminOpenSupport");
       const blockedEl = document.getElementById("adminBlockedUsers");
@@ -7313,6 +7874,9 @@ try {
         ]);
 
         let active = 0, admins = 0, moderators = 0, blocked = 0;
+        let studentTotal = 0, teachers = 0, staff = 0, guardians = 0, alumni = 0;
+        const yearCounts = {};
+        Object.keys(yearCountEls).forEach(k => yearCounts[k] = 0);
         const now = Date.now();
         usersSnap.forEach(d => {
           const u = d.data() || {};
@@ -7321,12 +7885,27 @@ try {
           if (u.role === "admin") admins++;
           if (u.role === "moderator") moderators++;
           if (u.blocked === true) blocked++;
+          const type = String(u.accountType || (u.role === "student" ? "student" : u.role || "")).toLowerCase();
+          if (type === "student") {
+            studentTotal++;
+            const year = String(u.academicYear || "");
+            if (Object.prototype.hasOwnProperty.call(yearCounts, year)) yearCounts[year]++;
+          } else if (type === "teacher") teachers++;
+          else if (type === "staff") staff++;
+          else if (type === "guardian") guardians++;
+          else if (type === "alumni") alumni++;
         });
 
         totalEl.textContent = usersSnap.size;
         activeEl.textContent = active;
         adminEl.textContent = admins;
         modEl.textContent = moderators;
+        if (studentTotalEl) studentTotalEl.textContent = studentTotal;
+        if (teacherEl) teacherEl.textContent = teachers;
+        if (staffEl) staffEl.textContent = staff;
+        if (guardianEl) guardianEl.textContent = guardians;
+        if (alumniEl) alumniEl.textContent = alumni;
+        Object.keys(yearCountEls).forEach(k => { if (yearCountEls[k]) yearCountEls[k].textContent = yearCounts[k]; });
         if(galleryEl) galleryEl.textContent = gallerySnap.size;
         if(blockedEl) blockedEl.textContent = blocked;
         if(supportEl) supportEl.textContent = supportSnap.docs.filter(d => !["closed","resolved"].includes(String(d.data()?.status||"").toLowerCase())).length;
@@ -7355,6 +7934,12 @@ try {
         activeEl.textContent = "0";
         adminEl.textContent = "0";
         modEl.textContent = "0";
+        if (studentTotalEl) studentTotalEl.textContent = "0";
+        if (teacherEl) teacherEl.textContent = "0";
+        if (staffEl) staffEl.textContent = "0";
+        if (guardianEl) guardianEl.textContent = "0";
+        if (alumniEl) alumniEl.textContent = "0";
+        Object.keys(yearCountEls).forEach(k => { if (yearCountEls[k]) yearCountEls[k].textContent = "0"; });
         viewsEl.textContent = "Today: 0";
         totalViewsEl.textContent = "0";
       }
@@ -7599,8 +8184,9 @@ try {
       if(searchDataLoaded)return;
       const collections=["notices","materials","events","routine","results","staff","gallery"];
       const all=[];
-      const snaps = await Promise.all(collections.map(col => getDocs(collection(db,col)).catch(e => { console.warn("Search",col,e); return null; })));
-      snaps.forEach((snap,i)=>{ if(!snap) return; const col=collections[i]; snap.docs.forEach(d=>{const x=d.data()||{};if(col==="results"&&x.published!==true)return;all.push({id:d.id,type:col,...x});}); });
+      for(const col of collections){
+        try{const snap=await getDocs(collection(db,col));snap.docs.forEach(d=>{const x=d.data()||{};if(col==="results"&&x.published!==true)return;all.push({id:d.id,type:col,...x});});}catch(e){console.warn("Search",col,e);}
+      }
       searchCache=all;searchDataLoaded=true;
     }
     function searchIcon(type){return {notices:"🔔",materials:"📚",events:"🎉",routine:"🗓️",results:"📊",staff:"👨‍🏫",gallery:"🖼️"}[type]||"🔎";}
@@ -7641,67 +8227,6 @@ try {
     };
     window.deleteGallery=async function(id){if(!canManage("gallery"))return;if(!confirm("এই photo delete করতে চান?"))return;try{await deleteDoc(doc(db,"gallery",id));showToast("Gallery photo delete হয়েছে।","success");await loadGallery();if(isAdmin())loadAdminStats();}catch(e){console.error(e);showToast("Photo delete হয়নি।","error");}};
 
-
-    /* =========================
-       WEBSITE INFO / FOOTER
-    ========================= */
-    const defaultSiteInfo = {
-      collegeName: "CampusOne NGC",
-      about: "CampusOne NGC is the student portal for Niamatpur Govt. College.",
-      developer: "CampusOne NGC Development Team",
-      developerUrl: "",
-      facebookUrl: "",
-      facebookText: "Join our Facebook Group",
-      copyright: "© 2026 CampusOne NGC. All rights reserved."
-    };
-    let siteInfo = { ...defaultSiteInfo };
-
-    function renderSiteInfo(){
-      const brand=document.getElementById("footerBrand");
-      const copy=document.getElementById("footerCopyright");
-      const fb=document.getElementById("footerFacebook");
-      if(brand) brand.textContent=siteInfo.collegeName||defaultSiteInfo.collegeName;
-      if(copy) copy.textContent=siteInfo.copyright||defaultSiteInfo.copyright;
-      if(fb){
-        fb.textContent=siteInfo.facebookText||"Facebook Group";
-        fb.href=siteInfo.facebookUrl||"#";
-        fb.style.pointerEvents=siteInfo.facebookUrl?"auto":"none";
-        fb.style.opacity=siteInfo.facebookUrl?"1":".55";
-      }
-    }
-    async function loadSiteInfo(){
-      try{
-        const snap=await getDoc(doc(db,"settings","siteInfo"));
-        if(snap.exists()) siteInfo={...defaultSiteInfo,...snap.data()};
-      }catch(e){console.warn("Site info load:",e);}
-      renderSiteInfo();
-    }
-    window.openSiteInfo=function(section){
-      const title=section==="developer"?"Developer":section==="about"?"About":"Website Information";
-      const body=section==="developer"
-        ? `<div class="site-info-card"><h4>${escapeHtml(siteInfo.developer||"Developer")}</h4><p>${escapeHtml(siteInfo.about||"")}</p>${siteInfo.developerUrl?`<p style="margin-top:10px;"><a href="${escapeHtml(siteInfo.developerUrl)}" target="_blank" rel="noopener">Developer Link ↗</a></p>`:""}</div>`
-        : section==="about"
-        ? `<div class="site-info-card"><h4>${escapeHtml(siteInfo.collegeName||"About")}</h4><p>${escapeHtml(siteInfo.about||"")}</p></div>`
-        : `<div class="site-info-grid"><div class="site-info-card"><h4>About</h4><p>${escapeHtml(siteInfo.about||"")}</p></div><div class="site-info-card"><h4>Developer</h4><p>${escapeHtml(siteInfo.developer||"")}</p>${siteInfo.developerUrl?`<p style="margin-top:8px;"><a href="${escapeHtml(siteInfo.developerUrl)}" target="_blank" rel="noopener">Developer Link ↗</a></p>`:""}</div><div class="site-info-card"><h4>Facebook Group</h4><p>${siteInfo.facebookUrl?`<a href="${escapeHtml(siteInfo.facebookUrl)}" target="_blank" rel="noopener">${escapeHtml(siteInfo.facebookText||"Join our Facebook Group")} ↗</a>`:"Link not set"}</p></div></div>`;
-      openModal(title,body,null,"Close");
-    };
-    window.openSiteInfoModal=async function(){
-      if(!isAdmin()) return;
-      const snap=await getDoc(doc(db,"settings","siteInfo")).catch(()=>null);
-      const x=snap?.exists()?{...defaultSiteInfo,...snap.data()}:siteInfo;
-      const body=`<div class="form-group"><label class="form-label">College / Website Name</label><input id="siteCollegeName" class="form-input" value="${escapeHtml(x.collegeName)}"></div>
-      <div class="form-group"><label class="form-label">About</label><textarea id="siteAbout" class="form-input" rows="4">${escapeHtml(x.about)}</textarea></div>
-      <div class="form-group"><label class="form-label">Developer</label><input id="siteDeveloper" class="form-input" value="${escapeHtml(x.developer)}"></div>
-      <div class="form-group"><label class="form-label">Developer Link (optional)</label><input id="siteDeveloperUrl" class="form-input" value="${escapeHtml(x.developerUrl)}" placeholder="https://..."></div>
-      <div class="form-group"><label class="form-label">Facebook Group Link</label><input id="siteFacebookUrl" class="form-input" value="${escapeHtml(x.facebookUrl)}" placeholder="https://facebook.com/groups/..."></div>
-      <div class="form-group"><label class="form-label">Facebook Link Text</label><input id="siteFacebookText" class="form-input" value="${escapeHtml(x.facebookText)}"></div>
-      <div class="form-group"><label class="form-label">Copyright</label><input id="siteCopyright" class="form-input" value="${escapeHtml(x.copyright)}"></div>`;
-      openModal("Website Info & Links",body,async()=>{
-        const next={collegeName:document.getElementById("siteCollegeName").value.trim(),about:document.getElementById("siteAbout").value.trim(),developer:document.getElementById("siteDeveloper").value.trim(),developerUrl:document.getElementById("siteDeveloperUrl").value.trim(),facebookUrl:document.getElementById("siteFacebookUrl").value.trim(),facebookText:document.getElementById("siteFacebookText").value.trim(),copyright:document.getElementById("siteCopyright").value.trim(),updatedAt:serverTimestamp(),updatedBy:currentUser.uid};
-        try{await setDoc(doc(db,"settings","siteInfo"),next,{merge:true});siteInfo={...defaultSiteInfo,...next};renderSiteInfo();closeModal();showToast("Website info Firebase-এ save হয়েছে।","success");}catch(e){console.error(e);showToast("Website info save হয়নি।","error");}
-      },"Save");
-    };
-
     /* =========================
        DARK MODE
     ========================= */
@@ -7734,7 +8259,7 @@ try {
 
 
             await loadUserProfile(user);
-            loadMaintenanceMode();
+            await loadMaintenanceMode();
             updateActivityAndViews();
             if (isAdmin()) loadAdminStats();
 
@@ -7883,72 +8408,54 @@ try {
     setInterval(() => { if(currentUser) updateActivityAndViews(); if(currentUser && isAdmin()) loadAdminStats(); }, 5*60*1000);
 
   
-
-    /* ============================================================
-       CAMPUSONE NGC — 1–60 FEATURE PACK
-       Adds/finishes: profiles, alumni, search/filter, user controls,
-       verification/approval, IDs, stats, CSV, logs, notices targeting,
-       assignments, calendar, achievements, clubs/Rover, messaging hooks,
-       notifications, responsive UI, security UX and role-aware access.
-    ============================================================ */
-    const FEATURE_COLLECTIONS={assignments:'assignments',calendar:'academicCalendar',achievements:'achievements',clubs:'clubs'};
-    const roleLabels={student:'Student',teacher:'Teacher',staff:'Staff',guardian:'Guardian',alumni:'Alumni',admin:'Admin',moderator:'Moderator'};
-    function isFeatureAdmin(){return typeof isAdmin==='function'&&isAdmin();}
-    function featureEsc(v){return escapeHtml(String(v??''));}
-    function featureDate(v){try{if(v?.toDate)return formatDate(v.toDate());return v?new Date(v).toLocaleDateString('en-GB'):''}catch(e){return ''}}
-    function featureCanManage(){return isFeatureAdmin() || (typeof canManage==='function'&&canManage('users'));}
-
-    window.updateRegisterFields=function(){
-      const t=document.getElementById('registerAccountType')?.value||'student';
-      const box=document.getElementById('studentRegisterFields');
-      if(box)box.classList.toggle('hidden',t!=='student');
-      ['registerRoll','registerAcademicYear','registerGroup'].forEach(id=>{const el=document.getElementById(id);if(el){el.required=t==='student';if(t!=='student'){el.value='';}}});
+    /* =========================
+       ADVANCED USER / COMMUNITY MODULES
+    ========================= */
+    let directoryCache = [];
+    async function loadUserDirectory(){
+      const table=document.getElementById("directoryTable"); if(!table)return;
+      table.innerHTML='<tr><td colspan="5">Loading...</td></tr>';
+      try{
+        const snap=await getDocs(collection(db,"users"));
+        directoryCache=snap.docs.map(d=>({id:d.id,...d.data()}));
+        renderDirectory(directoryCache);
+      }catch(e){console.error(e);table.innerHTML='<tr><td colspan="5">User directory load হয়নি। Firestore rules check করুন।</td></tr>';}
+    }
+    function renderDirectory(rows){
+      const table=document.getElementById("directoryTable"); if(!table)return;
+      if(!rows.length){table.innerHTML='<tr><td colspan="5">কোনো user পাওয়া যায়নি।</td></tr>';return;}
+      table.innerHTML=rows.map(u=>`<tr><td><strong>${escapeHtml(u.name||"Unnamed")}</strong><br><small>${escapeHtml(u.userId||u.id||"")}</small></td><td>${escapeHtml(u.accountType||"—")}</td><td>${escapeHtml(u.academicYear||"—")}</td><td>${escapeHtml(u.department||u.group||"—")}</td><td><span class="status-pill ${u.approved===true?"active":""}">${u.approved===true?"Approved":"Pending"}</span></td></tr>`).join("");
+    }
+    window.filterDirectory=function(){
+      const term=(document.getElementById("directorySearch")?.value||"").toLowerCase();
+      const type=document.getElementById("directoryType")?.value||"";
+      renderDirectory(directoryCache.filter(u=>(!type||u.accountType===type)&&["name","userId","academicYear","department","group","email"].some(k=>String(u[k]||"").toLowerCase().includes(term))));
     };
-    window.updateGoogleRegisterFields=function(){
-      const t=document.getElementById('googleRegAccountType')?.value||'student';
-      ['googleRegRoll','googleRegAcademicYear','googleRegGroup'].forEach(id=>{const el=document.getElementById(id);if(el){el.closest('.form-group')?.classList.toggle('hidden',t!=='student');el.required=t==='student';if(t!=='student')el.value='';}});
+    async function loadCommunityHub(){
+      for(const [col,id] of [["clubs","clubsList"],["achievements","achievementsList"]]){
+        const box=document.getElementById(id);if(!box)continue;
+        try{const snap=await getDocs(collection(db,col));const rows=snap.docs.map(d=>d.data());box.innerHTML=rows.length?rows.map(x=>`<div class="community-item"><strong>${escapeHtml(x.title||x.name||"Untitled")}</strong><small>${escapeHtml(x.description||x.details||"")}</small></div>`).join(""):'<div class="empty">এখনো কোনো তথ্য নেই।</div>';}catch(e){box.textContent="Load error";}
+      }
+    }
+    window.openCommunityModal=function(type){
+      if(!canManage(type))return showToast("এই section manage করার permission নেই।","error");
+      openModal(type==="clubs"?"Add Club / Organization":"Add Achievement",`<div class="form-group"><label class="form-label">Title</label><input id="communityTitle" class="form-input"></div><div class="form-group"><label class="form-label">Description</label><textarea id="communityDesc" class="form-textarea"></textarea></div>`,async()=>{
+        const title=document.getElementById("communityTitle")?.value.trim();if(!title)return showToast("Title দিন","warning");
+        await addDoc(collection(db,type),{title,description:document.getElementById("communityDesc")?.value.trim()||"",createdAt:serverTimestamp(),createdBy:currentUser.uid});
+        closeModal();loadCommunityHub();showToast("সফলভাবে যোগ হয়েছে","success");
+      },"Save");
     };
-
-    // Upgrade the existing email registration while preserving its Firebase flow.
-    const _legacyRegisterUser=window.registerUser;
-    window.registerUser=async function(){
-      const type=document.getElementById('registerAccountType')?.value||'student';
-      if(type==='student'){return _legacyRegisterUser();}
-      const name=document.getElementById('registerName')?.value.trim(),email=document.getElementById('registerEmail')?.value.trim(),password=document.getElementById('registerPassword')?.value,phone=document.getElementById('registerPhone')?.value.trim();
-      if(!name||!email||!password||!/^01\d{9}$/.test(phone)){setMessage('registerMessage','নাম, Email, সঠিক 11 digit Phone এবং Password দিন।','error');return;}
-      const btn=document.getElementById('registerBtn');btn.disabled=true;
-      try{const c=await createUserWithEmailAndPassword(auth,email,password);await updateProfile(c.user,{displayName:name});await setDoc(doc(db,'users',c.user.uid),{uid:c.user.uid,name,email,phone,accountType:type,role:type,roll:'',academicYear:'',group:'N/A',photoURL:c.user.photoURL||'',verified:false,approved:false,uniqueId:'NGC-'+c.user.uid.slice(0,8).toUpperCase(),createdAt:serverTimestamp()});setMessage('registerMessage','Account সফলভাবে তৈরি হয়েছে। Admin approval প্রয়োজন হতে পারে।','success');showToast('Account তৈরি হয়েছে।','success');}catch(e){setMessage('registerMessage',friendlyAuthError(e),'error');}finally{btn.disabled=false;btn.textContent='Register করুন';}
+    async function loadMessages(){
+      const box=document.getElementById("messagesList");if(!box||!currentUser)return;
+      try{const snap=await getDocs(query(collection(db,"messages"),where("toUid","==",currentUser.uid)));const rows=snap.docs.map(d=>d.data());box.innerHTML=rows.length?rows.map(x=>`<div class="message-item"><strong>${escapeHtml(x.subject||"Message")}</strong><small>${escapeHtml(x.body||"")}<br>${escapeHtml(x.fromEmail||"")}</small></div>`).join(""):'<div class="empty">কোনো message নেই।</div>';}catch(e){box.innerHTML='<div class="empty">Messages load করতে Firestore permission প্রয়োজন।</div>';}
+    }
+    window.openMessageModal=function(){
+      openModal("New Message",`<div class="form-group"><label class="form-label">Recipient User ID</label><input id="messageTo" class="form-input"></div><div class="form-group"><label class="form-label">Subject</label><input id="messageSubject" class="form-input"></div><div class="form-group"><label class="form-label">Message</label><textarea id="messageBody" class="form-textarea"></textarea></div>`,async()=>{
+        const to=document.getElementById("messageTo")?.value.trim(),body=document.getElementById("messageBody")?.value.trim();if(!to||!body)return showToast("Recipient ও message দিন","warning");
+        await addDoc(collection(db,"messages"),{toUid:to,subject:document.getElementById("messageSubject")?.value.trim()||"Message",body,fromUid:currentUser.uid,fromEmail:currentUser.email||"",createdAt:serverTimestamp(),read:false});
+        closeModal();showToast("Message পাঠানো হয়েছে","success");
+      },"Send");
     };
-
-    async function featureGet(col){try{const snap=await getDocs(query(collection(db,col),orderBy('createdAt','desc'),limit(200)));return snap.docs.map(d=>({id:d.id,...d.data()}));}catch(e){try{const snap=await getDocs(collection(db,col));return snap.docs.map(d=>({id:d.id,...d.data()}));}catch(err){console.error(err);return[];}}}
-    function featureModal(title,fields,onSave){const body=fields.map(f=>`<div class="form-group"><label class="form-label">${featureEsc(f.label)}</label>${f.type==='textarea'?`<textarea id="fm_${f.id}" class="form-input" rows="4" placeholder="${featureEsc(f.placeholder||'')}"></textarea>`:`<input id="fm_${f.id}" class="form-input" type="${f.type||'text'}" placeholder="${featureEsc(f.placeholder||'')}">`}</div>`).join('');openModal(title,body,async()=>{const data={};for(const f of fields)data[f.id]=document.getElementById('fm_'+f.id)?.value.trim()||'';await onSave(data);closeModal();});}
-    window.openFeatureModal=function(kind){if(!featureCanManage()){showToast('Admin permission required.','warning');return;}const defs={assignments:[['title','Title'],['subject','Subject'],['deadline','Deadline','date'],['description','Description','textarea']],calendar:[['title','Event / Date'],['date','Date','date'],['type','Type'],['description','Description','textarea']],achievements:[['title','Achievement'],['person','Student / Teacher / Team'],['date','Date','date'],['description','Description','textarea']],clubs:[['name','Club / Rover Group'],['category','Category'],['leader','Leader'],['description','Description','textarea']]};const f=(defs[kind]||[]).map(x=>({id:x[0],label:x[1],type:x[2]||'text'}));featureModal('Add '+kind,f,async d=>{await addDoc(collection(db,FEATURE_COLLECTIONS[kind]),{...d,createdAt:serverTimestamp(),createdBy:currentUser?.uid||''});showToast('Added successfully.','success');await loadFeatureCollection(kind);});};
-    async function loadFeatureCollection(kind){const arr=await featureGet(FEATURE_COLLECTIONS[kind]);const el=document.getElementById(kind+'Grid');if(!el)return;el.innerHTML=arr.length?arr.map(x=>`<article class="feature-card"><h3>${featureEsc(x.title||x.name||'Untitled')}</h3><div class="feature-meta">${featureEsc(x.subject||x.category||x.person||x.type||'Campus')} ${x.date?'• '+featureEsc(featureDate(x.date)):''}</div><p>${featureEsc(x.description||x.leader||'')}</p>${isFeatureAdmin()?`<div class="feature-actions"><button class="danger-btn" onclick="deleteFeatureItem('${kind}','${featureEsc(x.id)}')">Delete</button></div>`:''}</article>`).join(''): '<div class="empty">No data found.</div>';}
-    window.deleteFeatureItem=async function(kind,id){if(!isFeatureAdmin()||!confirm('Delete this item?'))return;await deleteDoc(doc(db,FEATURE_COLLECTIONS[kind],id));showToast('Deleted.','success');loadFeatureCollection(kind);};
-
-    let alumniFeatureCache=[];
-    window.renderAlumni=function(){const q=(document.getElementById('alumniSearch')?.value||'').toLowerCase();const el=document.getElementById('alumniGrid');const a=alumniFeatureCache.filter(x=>[x.name,x.email,x.academicYear,x.department,x.batch].join(' ').toLowerCase().includes(q));el.innerHTML=a.length?a.map(x=>`<article class="feature-card"><h3>${featureEsc(x.name||'Alumni')}</h3><div class="feature-meta">${featureEsc(x.batch||x.academicYear||'')} • ${featureEsc(x.email||'')}</div><p>${featureEsc(x.department||x.phone||'Former Student')}</p></article>`).join(''):'<div class="empty">No alumni found.</div>';};
-    async function loadAlumni(){const all=await featureGet('users');alumniFeatureCache=all.filter(x=>String(x.accountType||x.role).toLowerCase()==='alumni');renderAlumni();}
-
-    window.loadFeatureUsers=async function(){if(!isFeatureAdmin())return showToast('Admin only.','warning');const users=await featureGet('users');const box=document.getElementById('featureAdminContent');box.innerHTML=`<div class="card-body"><div class="toolbar"><input id="fuSearch" class="form-input" placeholder="Search users..." oninput="filterFeatureUsers()"></div><div id="fuTable" style="overflow:auto;margin-top:12px"></div></div>`;window._featureUsers=users;filterFeatureUsers();};
-    window.filterFeatureUsers=function(){const q=(document.getElementById('fuSearch')?.value||'').toLowerCase();const a=(window._featureUsers||[]).filter(x=>[x.name,x.email,x.role,x.accountType,x.uniqueId,x.phone].join(' ').toLowerCase().includes(q));document.getElementById('fuTable').innerHTML=`<table class="data-table"><thead><tr><th>Name</th><th>Type</th><th>ID</th><th>Status</th><th>Actions</th></tr></thead><tbody>${a.map(x=>`<tr><td>${featureEsc(x.name)}</td><td>${featureEsc(roleLabels[x.accountType||x.role]||x.role||'Student')}</td><td>${featureEsc(x.uniqueId||'—')}</td><td>${x.blocked?'Blocked':x.approved===false?'Pending':'Active'}${x.verified?' • Verified':''}</td><td><button class="small-btn" onclick="featureToggleApproval('${x.id}',${x.approved!==false})">${x.approved===false?'Approve':'Revoke'}</button> <button class="small-btn" onclick="featureToggleVerify('${x.id}',${!!x.verified})">${x.verified?'Unverify':'Verify'}</button> <button class="danger-btn" onclick="featureDeleteUser('${x.id}')">Delete</button></td></tr>`).join('')}</tbody></table>`;};
-    window.featureToggleApproval=async function(id,current){if(!isFeatureAdmin())return;await updateDoc(doc(db,'users',id),{approved:!current});await logFeature('approval',id,{approved:!current});loadFeatureUsers();};
-    window.featureToggleVerify=async function(id,current){if(!isFeatureAdmin())return;await updateDoc(doc(db,'users',id),{verified:!current});await logFeature('verification',id,{verified:!current});loadFeatureUsers();};
-    window.featureDeleteUser=async function(id){if(!isFeatureAdmin()||!confirm('Delete user profile from Firestore?'))return;await deleteDoc(doc(db,'users',id));await logFeature('delete_user',id,{});showToast('User deleted.','success');loadFeatureUsers();};
-    window.loadPendingUsers=async function(){if(!isFeatureAdmin())return;const users=await featureGet('users');window._featureUsers=users.filter(x=>x.approved===false);document.getElementById('featureAdminContent').innerHTML='<div class="card-body"><h3>Approval Queue</h3><div id="fuTable" style="overflow:auto;margin-top:12px"></div></div>';filterFeatureUsers();};
-    async function logFeature(action,targetId,details){if(!currentUser)return;try{await addDoc(collection(db,'activityLogs'),{action,targetId,details,actorUid:currentUser.uid,actorName:currentUser.displayName||currentUser.email||'',createdAt:serverTimestamp()});}catch(e){console.warn('activity log',e);}}
-    window.loadActivityLog=async function(){if(!isFeatureAdmin())return;const logs=await featureGet('activityLogs');document.getElementById('featureAdminContent').innerHTML=`<div class="card-body"><h3>Activity Log</h3><div class="feature-grid" style="margin-top:12px">${logs.slice(0,100).map(x=>`<article class="feature-card"><b>${featureEsc(x.action)}</b><div class="feature-meta">${featureEsc(x.actorName||x.actorUid||'Admin')} • ${featureEsc(featureDate(x.createdAt))}</div><div>${featureEsc(JSON.stringify(x.details||{}))}</div></article>`).join('')||'<div class="empty">No activity yet.</div>'}</div></div>`;};
-    window.exportUsersCSV=async function(){if(!isFeatureAdmin())return;const users=await featureGet('users');const headers=['Name','Email','Phone','Account Type','Role','Academic Year','Group','Roll','Unique ID','Verified','Approved','Blocked'];const rows=users.map(x=>[x.name,x.email,x.phone,x.accountType||'',x.role||'',x.academicYear||'',x.group||'',x.roll||'',x.uniqueId||'',!!x.verified,x.approved!==false,!!x.blocked]);const csv=[headers,...rows].map(r=>r.map(v=>'"'+String(v??'').replaceAll('"','""')+'"').join(',')).join('\n');const blob=new Blob([csv],{type:'text/csv;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='campusone-users.csv';a.click();URL.revokeObjectURL(a.href);};
-
-    // Search across newly added collections and existing cached portal data.
-    const _oldPerformSearch=window.performGlobalSearch;
-    window.performGlobalSearch=async function(){if(typeof _oldPerformSearch==='function')_oldPerformSearch();};
-    const _oldShowPage=window.showPage;
-    window.showPage=function(page,btn){_oldShowPage(page,btn);if(page==='assignments')loadFeatureCollection('assignments');if(page==='calendar')loadFeatureCollection('calendar');if(page==='achievements')loadFeatureCollection('achievements');if(page==='clubs')loadFeatureCollection('clubs');if(page==='alumni')loadAlumni();if(page==='feature-admin')loadFeatureUsers();};
-
-    // Add a management shortcut to the existing Admin page without replacing it.
-    document.addEventListener('DOMContentLoaded',()=>{const admin=document.getElementById('adminPanelRoleBadge');if(admin){const b=document.createElement('button');b.className='primary-btn';b.textContent='🚀 Advanced Management';b.onclick=()=>showPage('feature-admin');admin.parentElement?.appendChild(b);}updateRegisterFields();});
-    window.setInterval(()=>{if(currentUser&&isFeatureAdmin())logFeature('heartbeat',currentUser.uid,{});},60*60*1000);
 </script>
 
 </body>
